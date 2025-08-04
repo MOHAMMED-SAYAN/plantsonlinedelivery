@@ -162,13 +162,18 @@ transition: transform 0.3s ease;
 .mobile-menu.active {
 transform: translateX(0);
 }
+#navbar{
+  @media (max-width: 480px) {
+  .card {
+    width: 10%;
+  }
+}
+}
 </style>
 </head>
 <body>
 <!-- ========================= NAVBAR ========================= -->
-<nav id="navbar" class="fixed top-0 w-full bg-black/80 backdrop-blur-sm z-50" style="@media screen {
-  
-}">
+<nav id="navbar" class="fixed top-0 w-full bg-black/80 backdrop-blur-sm z-50" style="width: 370px;">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
 
