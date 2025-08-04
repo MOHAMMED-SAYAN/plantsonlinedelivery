@@ -162,80 +162,45 @@ transition: transform 0.3s ease;
 .mobile-menu.active {
 transform: translateX(0);
 }
-#navbar{
-  @media (max-width: 480px) {
-  .card {
-    width: 10%;
-  }
-}
-}
 </style>
 </head>
 <body>
-<!-- ========================= NAVBAR ========================= -->
-<nav id="navbar" class="fixed top-0 w-full bg-black/80 backdrop-blur-sm z-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
-
-      <!-- Logo -->
-      <div class="flex items-center">
-        <span class="font-['Pacifico'] text-2xl text-primary">PlantHub</span>
-      </div>
-
-      <!-- Desktop links -->
-      <div class="hidden md:flex items-baseline space-x-8">
-        <a href="#home"     class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
-        <a href="#shop"     class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Shop</a>
-        <a href="#portfolio"class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Portfolio</a>
-        <a href="#features" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Why Choose Us</a>
-        <a href="#contact"  class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Contact</a>
-      </div>
-
-      <!-- Hamburger (mobile) -->
-      <div class="md:hidden">
-        <button id="mobile-menu-btn"
-                class="text-white hover:text-primary p-2"
-                aria-label="toggle menu" style="margin-left: -50px;">
-          <!-- simple inline SVG hamburger -->
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile drawer -->
-  <div id="mobile-menu"
-       class="md:hidden fixed inset-0 top-16 bg-black/95 backdrop-blur-sm
-              translate-x-full transition-transform duration-300 ease-in-out">
-    <div class="px-6 py-8 space-y-6">
-      <a href="#home"     class="block text-white hover:text-primary text-lg font-medium">Home</a>
-      <a href="#shop"     class="block text-white hover:text-primary text-lg font-medium">Shop</a>
-      <a href="#portfolio"class="block text-white hover:text-primary text-lg font-medium">Portfolio</a>
-      <a href="#features" class="block text-white hover:text-primary text-lg font-medium">Why Choose Us</a>
-      <a href="#contact"  class="block text-white hover:text-primary text-lg font-medium">Contact</a>
-    </div>
-  </div>
+<!-- Navigation -->
+<nav class="fixed top-0 w-full bg-black/80 backdrop-blur-sm z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center">
+<span class="font-['Pacifico'] text-2xl text-primary">PlantHub</span>
+</div>
+<div class="hidden md:block">
+<div class="ml-10 flex items-baseline space-x-8">
+<a href="#home" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
+<a href="#shop" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Shop</a>
+<a href="#portfolio" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Portfolio</a>
+<a href="#features" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Why Choose Us</a>
+<a href="#contact" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Contact</a>
+</div>
+</div>
+<div class="md:hidden">
+<button class="mobile-menu-btn text-white hover:text-primary" style="margin-left: -40px;">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-screen bg-black/95 backdrop-blur-sm">
+<div class="px-6 py-8 space-y-6">
+<a href="#home" class="block text-white hover:text-primary text-lg font-medium">Home</a>
+<a href="#shop" class="block text-white hover:text-primary text-lg font-medium">Shop</a>
+<a href="#portfolio" class="block text-white hover:text-primary text-lg font-medium">Portfolio</a>
+<a href="#features" class="block text-white hover:text-primary text-lg font-medium">Why Choose Us</a>
+<a href="#contact" class="block text-white hover:text-primary text-lg font-medium">Contact</a>
+</div>
+</div>
 </nav>
-
-<!-- ========================= JS (tiny toggle) ========================= -->
-<script>
-  const btn   = document.getElementById('mobile-menu-btn');
-  const menu  = document.getElementById('mobile-menu');
-
-  btn.addEventListener('click', () => {
-    menu.classList.toggle('translate-x-full');   // slide in/out
-  });
-
-  /* Close drawer when a link is clicked (optional) */
-  [...menu.querySelectorAll('a[href^="#"]')].forEach(a =>
-    a.addEventListener('click', () =>
-      menu.classList.add('translate-x-full')
-    )
-  );
-</script>
 <!-- Hero Section -->
 <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
 <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
