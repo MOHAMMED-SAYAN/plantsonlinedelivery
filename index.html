@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlantHub - Premium Plants Online Delivery</title>
+<script src="https://cdn.tailwindcss.com/3.4.16">
+</script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: "#00ff88",
+        secondary: "#0f0f0f",
+      },
+      borderRadius: {
+        none: "0px",
+        sm: "4px",
+        DEFAULT: "8px",
+        md: "12px",
+        lg: "16px",
+        xl: "20px",
+        "2xl": "24px",
+        "3xl": "32px",
+        full: "9999px",
+        button: "8px",
+      },
+    },
+  },
+};
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: 'Poppins', sans-serif;
+background-color: #0f0f0f;
+color: #ffffff;
+overflow-x: hidden;
+}
+.hero-bg {
+background-image: linear-gradient(rgba(15, 15, 15, 0.6), rgba(15, 15, 15, 0.6)), url('https://readdy.ai/api/search-image?query=modern%20indoor%20plants%20collection%20in%20minimalist%20white%20room%20with%20natural%20lighting%2C%20green%20tropical%20leaves%2C%20monstera%20deliciosa%2C%20snake%20plant%2C%20fiddle%20leaf%20fig%2C%20clean%20white%20background%2C%20professional%20photography%2C%20high%20quality%2C%20botanical%20aesthetic&width=1920&height=1080&seq=hero-plants&orientation=landscape');
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+}
+.neon-glow {
+box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+transition: all 0.3s ease;
+}
+.neon-glow:hover {
+box-shadow: 0 0 30px rgba(0, 255, 136, 0.8);
+transform: scale(1.05);
+}
+.card-3d {
+transform-style: preserve-3d;
+transition: transform 0.3s ease;
+}
+.card-3d:hover {
+transform: rotateY(10deg) rotateX(5deg);
+}
+.typewriter {
+overflow: hidden;
+border-right: 3px solid #00ff88;
+white-space: nowrap;
+animation: typewriter 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+@keyframes typewriter {
+from { width: 0; }
+to { width: 100%; }
+}
+@keyframes blink-caret {
+from, to { border-color: transparent; }
+50% { border-color: #00ff88; }
+}
+.scroll-indicator {
+animation: bounce 2s infinite;
+}
+@keyframes bounce {
+0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+40% { transform: translateY(-10px); }
+60% { transform: translateY(-5px); }
+}
+.fade-in {
+opacity: 0;
+transform: translateY(30px);
+transition: all 0.6s ease;
+}
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.product-card {
+transition: all 0.3s ease;
+background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+}
+.product-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+}
+.product-image {
+transition: transform 0.3s ease;
+}
+.product-card:hover .product-image {
+transform: scale(1.1);
+}
+.nav-link {
+position: relative;
+transition: color 0.3s ease;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -5px;
+left: 0;
+background-color: #00ff88;
+transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+width: 100%;
+}
+.form-input {
+background: rgba(255, 255, 255, 0.1);
+border: 1px solid rgba(255, 255, 255, 0.2);
+transition: all 0.3s ease;
+}
+.form-input:focus {
+background: rgba(255, 255, 255, 0.15);
+border-color: #00ff88;
+box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+.lightbox {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.9);
+z-index: 1000;
+justify-content: center;
+align-items: center;
+}
+.lightbox.active {
+display: flex;
+}
+.mobile-menu {
+transform: translateX(100%);
+transition: transform 0.3s ease;
+}
+.mobile-menu.active {
+transform: translateX(0);
+}
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="fixed top-0 w-full bg-black/80 backdrop-blur-sm z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center">
+<span class="font-['Pacifico'] text-2xl text-primary">PlantHub</span>
+</div>
+<div class="hidden md:block">
+<div class="ml-10 flex items-baseline space-x-8">
+<a href="#home" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
+<a href="#shop" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Shop</a>
+<a href="#portfolio" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Portfolio</a>
+<a href="#features" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Why Choose Us</a>
+<a href="#contact" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Contact</a>
+</div>
+</div>
+<div class="md:hidden">
+<button class="mobile-menu-btn text-white hover:text-primary">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-screen bg-black/95 backdrop-blur-sm">
+<div class="px-6 py-8 space-y-6">
+<a href="#home" class="block text-white hover:text-primary text-lg font-medium">Home</a>
+<a href="#shop" class="block text-white hover:text-primary text-lg font-medium">Shop</a>
+<a href="#portfolio" class="block text-white hover:text-primary text-lg font-medium">Portfolio</a>
+<a href="#features" class="block text-white hover:text-primary text-lg font-medium">Why Choose Us</a>
+<a href="#contact" class="block text-white hover:text-primary text-lg font-medium">Contact</a>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
+<div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center">
+<h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight text-center">
+  <span class="typewriter block">
+    Transform Your <span class="block sm:inline">Space</span>
+  </span>
+</h1>
+<p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+Premium plants delivered to your doorstep. Create your perfect green sanctuary with our curated collection of healthy, beautiful plants.
+</p>
+<button class="neon-glow bg-primary text-black px-8 py-4 !rounded-button text-lg font-semibold whitespace-nowrap">
+Shop Plants Now
+</button>
+</div>
+</div>
+<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-arrow-down-line ri-lg text-primary"></i>
+</div>
+</div>
+</section>
+<!-- Shop Section -->
+<section id="shop" class="py-20 bg-secondary">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-4xl md:text-5xl font-bold mb-4">Our Plant Collection</h2>
+<p class="text-xl text-gray-400 max-w-2xl mx-auto">
+Discover our carefully selected plants, perfect for any space and skill level
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="product-card rounded-lg overflow-hidden">
+<div class="overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=monstera%20deliciosa%20plant%20in%20modern%20white%20ceramic%20pot%2C%20green%20tropical%20leaves%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-1&orientation=landscape"
+alt="Monstera Deliciosa" class="product-image w-full h-64 object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Monstera Deliciosa</h3>
+<p class="text-gray-400 mb-4">Perfect for bright, indirect light</p>
+<div class="flex justify-between items-center">
+<span class="text-2xl font-bold text-primary">$45</span>
+<div class="flex gap-2">
+<button class="bg-gray-800 text-primary px-4 py-2 !rounded-button font-semibold hover:bg-gray-700 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-phone-line mr-1"></i> Contact
+</button>
+<button class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-shopping-cart-line mr-1"></i> Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="product-card rounded-lg overflow-hidden">
+<div class="overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=snake%20plant%20sansevieria%20in%20modern%20black%20ceramic%20pot%2C%20tall%20green%20leaves%20with%20yellow%20edges%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-2&orientation=landscape"
+alt="Snake Plant" class="product-image w-full h-64 object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Snake Plant</h3>
+<p class="text-gray-400 mb-4">Low maintenance, perfect for beginners</p>
+<div class="flex justify-between items-center">
+<span class="text-2xl font-bold text-primary">$35</span>
+<div class="flex gap-2">
+<button class="bg-gray-800 text-primary px-4 py-2 !rounded-button font-semibold hover:bg-gray-700 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-phone-line mr-1"></i> Contact
+</button>
+<button class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-shopping-cart-line mr-1"></i> Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="product-card rounded-lg overflow-hidden">
+<div class="overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=fiddle%20leaf%20fig%20plant%20in%20modern%20terracotta%20pot%2C%20large%20green%20leaves%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-3&orientation=landscape"
+alt="Fiddle Leaf Fig" class="product-image w-full h-64 object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Fiddle Leaf Fig</h3>
+<p class="text-gray-400 mb-4">Statement plant for large spaces</p>
+<div class="flex justify-between items-center">
+<span class="text-2xl font-bold text-primary">$85</span>
+<div class="flex gap-2">
+<button class="bg-gray-800 text-primary px-4 py-2 !rounded-button font-semibold hover:bg-gray-700 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-phone-line mr-1"></i> Contact
+</button>
+<button class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-shopping-cart-line mr-1"></i> Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="product-card rounded-lg overflow-hidden">
+<div class="overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=rubber%20plant%20ficus%20elastica%20in%20modern%20white%20pot%2C%20glossy%20dark%20green%20leaves%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-4&orientation=landscape"
+alt="Rubber Plant" class="product-image w-full h-64 object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Rubber Plant</h3>
+<p class="text-gray-400 mb-4">Glossy leaves, air purifying</p>
+<div class="flex justify-between items-center">
+<span class="text-2xl font-bold text-primary">$55</span>
+<div class="flex gap-2">
+<button class="bg-gray-800 text-primary px-4 py-2 !rounded-button font-semibold hover:bg-gray-700 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-phone-line mr-1"></i> Contact
+</button>
+<button class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-shopping-cart-line mr-1"></i> Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="product-card rounded-lg overflow-hidden">
+<div class="overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=peace%20lily%20plant%20in%20modern%20ceramic%20pot%2C%20white%20flowers%20and%20green%20leaves%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-5&orientation=landscape"
+alt="Peace Lily" class="product-image w-full h-64 object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Peace Lily</h3>
+<p class="text-gray-400 mb-4">Beautiful white flowers, low light</p>
+<div class="flex justify-between items-center">
+<span class="text-2xl font-bold text-primary">$40</span>
+<div class="flex gap-2">
+<button class="bg-gray-800 text-primary px-4 py-2 !rounded-button font-semibold hover:bg-gray-700 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-phone-line mr-1"></i> Contact
+</button>
+<button class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-shopping-cart-line mr-1"></i> Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="product-card rounded-lg overflow-hidden">
+<div class="overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=pothos%20golden%20plant%20in%20hanging%20basket%2C%20trailing%20green%20leaves%20with%20yellow%20variegation%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-6&orientation=landscape"
+alt="Golden Pothos" class="product-image w-full h-64 object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Golden Pothos</h3>
+<p class="text-gray-400 mb-4">Trailing vine, easy to propagate</p>
+<div class="flex justify-between items-center">
+<span class="text-2xl font-bold text-primary">$25</span>
+<div class="flex gap-2">
+<button class="bg-gray-800 text-primary px-4 py-2 !rounded-button font-semibold hover:bg-gray-700 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-phone-line mr-1"></i> Contact
+</button>
+<button class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-shopping-cart-line mr-1"></i> Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="product-card rounded-lg overflow-hidden">
+<div class="overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=zz%20plant%20zamioculcas%20zamiifolia%20in%20modern%20gray%20ceramic%20pot%2C%20glossy%20dark%20green%20leaves%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-7&orientation=landscape"
+alt="ZZ Plant" class="product-image w-full h-64 object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">ZZ Plant</h3>
+<p class="text-gray-400 mb-4">Low light tolerant, drought resistant</p>
+<div class="flex justify-between items-center">
+<span class="text-2xl font-bold text-primary">$30</span>
+<div class="flex gap-2">
+<button class="bg-gray-800 text-primary px-4 py-2 !rounded-button font-semibold hover:bg-gray-700 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-phone-line mr-1"></i> Contact
+</button>
+<button class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-shopping-cart-line mr-1"></i> Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="product-card rounded-lg overflow-hidden">
+<div class="overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=chinese%20evergreen%20aglaonema%20in%20modern%20white%20ceramic%20pot%2C%20silver%20and%20green%20variegated%20leaves%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-8&orientation=landscape"
+alt="Chinese Evergreen" class="product-image w-full h-64 object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Chinese Evergreen</h3>
+<p class="text-gray-400 mb-4">Beautiful variegated leaves</p>
+<div class="flex justify-between items-center">
+<span class="text-2xl font-bold text-primary">$35</span>
+<div class="flex gap-2">
+<button class="bg-gray-800 text-primary px-4 py-2 !rounded-button font-semibold hover:bg-gray-700 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-phone-line mr-1"></i> Contact
+</button>
+<button class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-shopping-cart-line mr-1"></i> Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="product-card rounded-lg overflow-hidden">
+<div class="overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=bird%20of%20paradise%20plant%20strelitzia%20in%20modern%20black%20ceramic%20pot%2C%20large%20tropical%20leaves%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-9&orientation=landscape"
+alt="Bird of Paradise" class="product-image w-full h-64 object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Bird of Paradise</h3>
+<p class="text-gray-400 mb-4">Dramatic tropical statement plant</p>
+<div class="flex justify-between items-center">
+<span class="text-2xl font-bold text-primary">$95</span>
+<div class="flex gap-2">
+<button class="bg-gray-800 text-primary px-4 py-2 !rounded-button font-semibold hover:bg-gray-700 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-phone-line mr-1"></i> Contact
+</button>
+<button class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap flex items-center">
+<i class="ri-shopping-cart-line mr-1"></i> Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-12">
+<a href="catalog.html">
+<button class="bg-primary text-black px-8 py-4 !rounded-button text-lg font-semibold hover:bg-green-400 transition-colors whitespace-nowrap inline-flex items-center">
+View More Plants <i class="ri-arrow-right-line ml-2"></i>
+</button>
+</a>
+</div>
+</div>
+</section>
+<!-- Portfolio Section -->
+<section id="portfolio" class="py-20 bg-gray-900">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-4xl md:text-5xl font-bold mb-4">Plant Installations</h2>
+<p class="text-xl text-gray-400 max-w-2xl mx-auto">
+See how we've transformed spaces with our beautiful plant arrangements
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="portfolio-item cursor-pointer rounded-lg overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=modern%20living%20room%20with%20multiple%20indoor%20plants%2C%20monstera%2C%20snake%20plant%2C%20fiddle%20leaf%20fig%2C%20natural%20lighting%2C%20contemporary%20furniture%2C%20green%20plant%20installation%2C%20interior%20design&width=400&height=300&seq=portfolio-1&orientation=landscape"
+alt="Living Room Installation" class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-110">
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-zoom-in-line ri-2x text-primary"></i>
+</div>
+</div>
+</div>
+<div class="portfolio-item cursor-pointer rounded-lg overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=modern%20office%20space%20with%20indoor%20plants%2C%20desk%20plants%2C%20hanging%20plants%2C%20professional%20workspace%20with%20greenery%2C%20corporate%20plant%20installation%2C%20natural%20lighting&width=400&height=300&seq=portfolio-2&orientation=landscape"
+alt="Office Installation" class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-110">
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-zoom-in-line ri-2x text-primary"></i>
+</div>
+</div>
+</div>
+<div class="portfolio-item cursor-pointer rounded-lg overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=modern%20bedroom%20with%20indoor%20plants%2C%20bedside%20plants%2C%20hanging%20plants%2C%20cozy%20bedroom%20plant%20arrangement%2C%20natural%20lighting%2C%20peaceful%20green%20space&width=400&height=300&seq=portfolio-3&orientation=landscape"
+alt="Bedroom Installation" class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-110">
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-zoom-in-line ri-2x text-primary"></i>
+</div>
+</div>
+</div>
+<div class="portfolio-item cursor-pointer rounded-lg overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=modern%20kitchen%20with%20herb%20garden%2C%20kitchen%20plants%2C%20hanging%20herbs%2C%20culinary%20plant%20installation%2C%20natural%20lighting%2C%20fresh%20green%20herbs&width=400&height=300&seq=portfolio-4&orientation=landscape"
+alt="Kitchen Installation" class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-110">
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-zoom-in-line ri-2x text-primary"></i>
+</div>
+</div>
+</div>
+<div class="portfolio-item cursor-pointer rounded-lg overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=modern%20bathroom%20with%20tropical%20plants%2C%20humidity%20loving%20plants%2C%20bathroom%20plant%20installation%2C%20natural%20lighting%2C%20spa-like%20atmosphere%20with%20greenery&width=400&height=300&seq=portfolio-5&orientation=landscape"
+alt="Bathroom Installation" class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-110">
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-zoom-in-line ri-2x text-primary"></i>
+</div>
+</div>
+</div>
+<div class="portfolio-item cursor-pointer rounded-lg overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=modern%20balcony%20garden%20with%20outdoor%20plants%2C%20balcony%20plant%20arrangement%2C%20urban%20gardening%2C%20outdoor%20plant%20installation%2C%20natural%20lighting%2C%20green%20balcony%20space&width=400&height=300&seq=portfolio-6&orientation=landscape"
+alt="Balcony Installation" class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-110">
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-zoom-in-line ri-2x text-primary"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+<div class="relative max-w-4xl max-h-full">
+<img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain">
+<button class="absolute top-4 right-4 text-white text-3xl hover:text-primary" id="close-lightbox">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-close-line ri-2x"></i>
+</div>
+</button>
+</div>
+</div>
+<!-- Features Section -->
+<section id="features" class="py-20 bg-secondary">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-4xl md:text-5xl font-bold mb-4">Why Choose PlantHub</h2>
+<p class="text-xl text-gray-400 max-w-2xl mx-auto">
+We're committed to delivering the highest quality plants and service
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="card-3d bg-gray-800 p-8 rounded-lg text-center">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-leaf-line ri-2x text-black"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">Healthy Plants</h3>
+<p class="text-gray-400">
+Every plant is carefully inspected and guaranteed to arrive healthy and thriving
+</p>
+</div>
+<div class="card-3d bg-gray-800 p-8 rounded-lg text-center">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-truck-line ri-2x text-black"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">Fast Delivery</h3>
+<p class="text-gray-400">
+Same-day delivery available in most areas, with careful packaging for safe transport
+</p>
+</div>
+<div class="card-3d bg-gray-800 p-8 rounded-lg text-center">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-recycle-line ri-2x text-black"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">Eco Packaging</h3>
+<p class="text-gray-400">
+100% recyclable packaging materials to minimize our environmental impact
+</p>
+</div>
+<div class="card-3d bg-gray-800 p-8 rounded-lg text-center">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-customer-service-line ri-2x text-black"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">Expert Support</h3>
+<p class="text-gray-400">
+Our plant experts are available to help with care tips and troubleshooting
+</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-gray-900">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
+<p class="text-xl text-gray-400 max-w-2xl mx-auto">
+Have questions about our plants or need help choosing the perfect green companion?
+</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- Contact Form -->
+<div class="fade-in">
+<form class="space-y-6">
+<div>
+<input type="text" placeholder="Your Name" class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none">
+</div>
+<div>
+<input type="email" placeholder="Your Email" class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none">
+</div>
+<div>
+<textarea rows="6" placeholder="Your Message" class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none resize-none"></textarea>
+</div>
+<button type="submit" class="neon-glow bg-primary text-black px-8 py-3 !rounded-button font-semibold w-full whitespace-nowrap">
+Send Message
+</button>
+</form>
+</div>
+<!-- Contact Info -->
+<div class="fade-in">
+<div class="space-y-8">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-map-pin-line ri-lg text-black"></i>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold mb-2">Visit Our Store</h3>
+<p class="text-gray-400">123 Garden Street, Green Valley, CA 90210</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-phone-line ri-lg text-black"></i>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold mb-2">Call Us</h3>
+<p class="text-gray-400">(555) 123-PLANT</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-mail-line ri-lg text-black"></i>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold mb-2">Email Us</h3>
+<p class="text-gray-400">hello@planthub.com</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-time-line ri-lg text-black"></i>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold mb-2">Store Hours</h3>
+<p class="text-gray-400">Mon-Fri: 9AM-7PM<br>Sat-Sun: 10AM-6PM</p>
+</div>
+</div>
+</div>
+<!-- Map -->
+<div class="mt-8 h-64 rounded-lg overflow-hidden">
+<div class="w-full h-full bg-center bg-cover" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png')"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-black py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<span class="font-['Pacifico'] text-2xl text-primary">PlantHub</span>
+<p class="text-gray-400 mt-4">
+Bringing nature into your home with premium plants and expert care guidance.
+</p>
+<div class="flex space-x-4 mt-6">
+<a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-facebook-fill"></i>
+</div>
+</a>
+<a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-instagram-fill"></i>
+</div>
+</a>
+<a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-twitter-fill"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+<ul class="space-y-2">
+<li><a href="#home" class="text-gray-400 hover:text-primary transition-colors">Home</a></li>
+<li><a href="#shop" class="text-gray-400 hover:text-primary transition-colors">Shop</a></li>
+<li><a href="#portfolio" class="text-gray-400 hover:text-primary transition-colors">Portfolio</a></li>
+<li><a href="#contact" class="text-gray-400 hover:text-primary transition-colors">Contact</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Plant Care</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Care Guides</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Plant Problems</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Watering Tips</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Light Requirements</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+<p class="text-gray-400 mb-4">Get plant care tips and special offers</p>
+<div class="flex">
+<input type="email" placeholder="Your email" class="form-input flex-1 px-4 py-2 rounded-l-lg text-white placeholder-gray-400 focus:outline-none">
+<button class="bg-primary text-black px-4 py-2 rounded-r-lg font-semibold hover:bg-green-400 transition-colors whitespace-nowrap">
+Subscribe
+</button>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-8 pt-8 text-center">
+<p class="text-gray-400">
+© 2025 PlantHub. All rights reserved. | Privacy Policy | Terms of Service
+</p>
+</div>
+</div>
+</footer>
+<script id="navigation-script">
+document.addEventListener("DOMContentLoaded", function () {
+  const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+  const mobileMenu = document.querySelector(".mobile-menu");
+  mobileMenuBtn.addEventListener("click", function () {
+    mobileMenu.classList.toggle("active");
+  });
+  // Close mobile menu when clicking on links
+  const mobileLinks = mobileMenu.querySelectorAll("a");
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      mobileMenu.classList.remove("active");
+    });
+  });
+  // Smooth scroll for navigation links
+  const navLinks = document.querySelectorAll('a[href^="#"]');
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      const targetSection = document.querySelector(targetId);
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  });
+});
+</script>
+<script id="scroll-animations-script">
+document.addEventListener("DOMContentLoaded", function () {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, observerOptions);
+  const fadeElements = document.querySelectorAll(".fade-in");
+  fadeElements.forEach((element) => {
+    observer.observe(element);
+  });
+});
+</script>
+<script id="lightbox-script">
+document.addEventListener("DOMContentLoaded", function () {
+  const portfolioItems = document.querySelectorAll(".portfolio-item img");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeLightbox = document.getElementById("close-lightbox");
+  portfolioItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      lightboxImg.src = this.src;
+      lightboxImg.alt = this.alt;
+      lightbox.classList.add("active");
+    });
+  });
+  closeLightbox.addEventListener("click", function () {
+    lightbox.classList.remove("active");
+  });
+  lightbox.addEventListener("click", function (e) {
+    if (e.target === lightbox) {
+      lightbox.classList.remove("active");
+    }
+  });
+});
+</script>
+<script id="form-interactions-script">
+document.addEventListener("DOMContentLoaded", function () {
+  const forms = document.querySelectorAll("form");
+  forms.forEach((form) => {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = "Sending...";
+      submitBtn.disabled = true;
+      // Simulate form submission
+      setTimeout(() => {
+        submitBtn.textContent = "Message Sent!";
+        setTimeout(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          form.reset();
+        }, 2000);
+      }, 1500);
+    });
+  });
+});
+</script>
+<script id="product-interactions-script">
+document.addEventListener("DOMContentLoaded", function () {
+  const productCards = document.querySelectorAll(".product-card");
+  productCards.forEach((card) => {
+    const cartBtn = card.querySelector("button:nth-child(2)");
+    const contactBtn = card.querySelector("button:nth-child(1)");
+    cartBtn.addEventListener("click", function () {
+      const originalHTML = this.innerHTML;
+      this.innerHTML = '<i class="ri-check-line mr-1"></i> Added!';
+      this.style.background = "#22c55e";
+      setTimeout(() => {
+        this.innerHTML = originalHTML;
+        this.style.background = "";
+      }, 1500);
+    });
+    contactBtn.addEventListener("click", function () {
+      const phoneNumber = "(555) 123-PLANT";
+      const modal = document.createElement("div");
+      modal.className =
+        "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50";
+      modal.innerHTML = `
+<div class="bg-gray-800 p-6 rounded-lg max-w-sm w-full mx-4">
+<h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+<p class="text-gray-400 mb-6">Call us at: ${phoneNumber}</p>
+<div class="flex justify-end gap-4">
+<button class="bg-gray-700 text-white px-4 py-2 !rounded-button" onclick="this.closest('.fixed').remove()">Close</button>
+<a href="tel:${phoneNumber}" class="bg-primary text-black px-4 py-2 !rounded-button font-semibold">Call Now</a>
+</div>
+</div>
+`;
+      document.body.appendChild(modal);
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) {
+          modal.remove();
+        }
+      });
+    });
+  });
+});
+</script>
+</body>
+</html>

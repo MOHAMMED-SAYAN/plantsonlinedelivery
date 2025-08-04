@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plant Catalog - PlantHub Premium Plants</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#00ff88",
+              secondary: "#0f0f0f",
+            },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet" />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #0f0f0f;
+        color: #ffffff;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+      .product-card {
+        transition: all 0.3s ease;
+        background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      }
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+      }
+      .product-image {
+        transition: transform 0.3s ease;
+      }
+      .product-card:hover .product-image {
+        transform: scale(1.1);
+      }
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: #00ff88;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      .form-input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+      }
+      .form-input:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #00ff88;
+        box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+      }
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      }
+      .mobile-menu.active {
+        transform: translateX(0);
+      }
+      .filter-dropdown {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+      }
+      .filter-dropdown.active {
+        display: block;
+      }
+      .price-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 6px;
+        background: #333;
+        border-radius: 3px;
+        outline: none;
+      }
+      .price-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #00ff88;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .price-slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: #00ff88;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+      }
+      .loading-spinner {
+        border: 2px solid #333;
+        border-top: 2px solid #00ff88;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .difficulty-badge {
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+      .difficulty-easy {
+        background: rgba(34, 197, 94, 0.2);
+        color: #22c55e;
+      }
+      .difficulty-moderate {
+        background: rgba(251, 191, 36, 0.2);
+        color: #fbbf24;
+      }
+      .difficulty-expert {
+        background: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+      }
+      .category-tag {
+        background: rgba(0, 255, 136, 0.2);
+        color: #00ff88;
+        padding: 2px 8px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+      .filter-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+      }
+      .filter-modal.active {
+        display: flex;
+      }
+      .empty-state {
+        display: none;
+      }
+      .empty-state.active {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-sm z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <span class="font-['Pacifico'] text-2xl text-primary">PlantHub</span>
+          </div>
+          
+          <!-- Desktop Menu -->
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a href="index.html" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
+              <a href="catalog.html" class="nav-link text-white px-3 py-2 text-sm font-medium">Catalog</a>
+              <a href="care-guides.html" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Care Guides</a>
+              <a href="about.html" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">About</a>
+              <a href="#contact" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Contact</a>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button class="mobile-menu-btn text-white p-2">
+              <i class="ri-menu-line ri-2x"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-screen bg-black/95 backdrop-blur-sm">
+        <div class="px-6 py-8 space-y-6">
+          <a href="index.html" class="block text-white hover:text-primary text-lg font-medium">Home</a>
+          <a href="catalog.html" class="block text-primary text-lg font-medium">Catalog</a>
+          <a href="care-guides.html" class="block text-white hover:text-primary text-lg font-medium">Care Guides</a>
+          <a href="about.html" class="block text-white hover:text-primary text-lg font-medium">About</a>
+          <a href="#contact" class="block text-white hover:text-primary text-lg font-medium">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="pt-24 pb-12 bg-secondary">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">Plant Catalog</h1>
+          <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            Discover our complete collection of premium plants for every space
+            and skill level
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-8 bg-gray-900 sticky top-16 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="hidden md:grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
+          <!-- Search -->
+          <div class="relative">
+            <input type="text" id="search-input" placeholder="Search plants..." class="form-input w-full pl-10 pr-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none text-sm" />
+            <div class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+              <i class="ri-search-line text-gray-400"></i>
+            </div>
+          </div>
+
+          <!-- Category -->
+          <div class="relative">
+            <button class="category-dropdown-btn form-input w-full px-4 py-3 rounded-lg text-white text-sm flex items-center justify-between">
+              <span>All Categories</span>
+              <div class="w-4 h-4 flex items-center justify-center"><i class="ri-arrow-down-s-line"></i></div>
+            </button>
+            <div class="category-dropdown absolute top-full left-0 w-full mt-1 filter-dropdown rounded-lg hidden z-50">
+              <div class="p-2">
+                <div class="category-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="">All Categories</div>
+                <div class="category-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="indoor">Indoor Plants</div>
+                <div class="category-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="outdoor">Outdoor Plants</div>
+                <div class="category-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="succulents">Succulents</div>
+                <div class="category-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="flowering">Flowering Plants</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Price Range -->
+          <div class="space-y-2">
+            <label class="text-sm text-gray-400">Price Range</label>
+            <input type="range" id="price-slider" min="0" max="200" value="200" class="price-slider w-full" />
+            <div class="text-xs text-gray-400">$0 - $<span id="price-value">200</span></div>
+          </div>
+
+          <!-- Care Difficulty -->
+          <div class="relative">
+            <button class="difficulty-dropdown-btn form-input w-full px-4 py-3 rounded-lg text-white text-sm flex items-center justify-between">
+              <span>All Levels</span>
+              <div class="w-4 h-4 flex items-center justify-center"><i class="ri-arrow-down-s-line"></i></div>
+            </button>
+            <div class="difficulty-dropdown absolute top-full left-0 w-full mt-1 filter-dropdown rounded-lg hidden z-50">
+              <div class="p-2">
+                <div class="difficulty-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="">All Levels</div>
+                <div class="difficulty-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="easy">Easy</div>
+                <div class="difficulty-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="moderate">Moderate</div>
+                <div class="difficulty-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="expert">Expert</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sort -->
+          <div class="relative">
+            <button class="sort-dropdown-btn form-input w-full px-4 py-3 rounded-lg text-white text-sm flex items-center justify-between">
+              <span>Sort by</span>
+              <div class="w-4 h-4 flex items-center justify-center"><i class="ri-arrow-down-s-line"></i></div>
+            </button>
+            <div class="sort-dropdown absolute top-full left-0 w-full mt-1 filter-dropdown rounded-lg hidden z-50">
+              <div class="p-2">
+                <div class="sort-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="popularity">Popularity</div>
+                <div class="sort-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="price-low">Price: Low to High</div>
+                <div class="sort-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="price-high">Price: High to Low</div>
+                <div class="sort-option px-3 py-2 hover:bg-primary hover:text-black rounded cursor-pointer text-sm" data-value="newest">Newest</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clear Filters -->
+          <button id="clear-filters" class="bg-gray-700 text-white px-4 py-3 !rounded-button text-sm font-semibold hover:bg-gray-600 transition-colors whitespace-nowrap">Clear All</button>
+        </div>
+
+        <!-- Mobile Filter Button -->
+        <div class="md:hidden text-center">
+          <button class="mobile-filter-btn bg-primary text-black px-6 py-3 !rounded-button font-semibold whitespace-nowrap">
+            <i class="ri-filter-line mr-2"></i> Show Filters
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile Filter Modal -->
+    <div class="filter-modal items-center justify-center">
+      <div class="bg-gray-900 p-6 rounded-lg max-w-sm w-full mx-4 max-h-[80vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-xl font-semibold">Filters</h3>
+          <button class="close-filter-modal text-gray-400 hover:text-white">
+            <div class="w-6 h-6 flex items-center justify-center"><i class="ri-close-line ri-lg"></i></div>
+          </button>
+        </div>
+        <div class="space-y-6">
+          <div>
+            <input type="text" id="mobile-search-input" placeholder="Search plants..." class="form-input w-full pl-10 pr-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label class="text-sm text-gray-400 block mb-2">Category</label>
+            <select id="mobile-category-select" class="form-input w-full px-4 py-3 rounded-lg text-white text-sm">
+              <option value="">All Categories</option>
+              <option value="indoor">Indoor Plants</option>
+              <option value="outdoor">Outdoor Plants</option>
+              <option value="succulents">Succulents</option>
+              <option value="flowering">Flowering Plants</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-sm text-gray-400 block mb-2">Price Range</label>
+            <input type="range" id="mobile-price-slider" min="0" max="200" value="200" class="price-slider w-full" />
+            <div class="text-xs text-gray-400 mt-1">$0 - $<span id="mobile-price-value">200</span></div>
+          </div>
+          <div>
+            <label class="text-sm text-gray-400 block mb-2">Care Difficulty</label>
+            <select id="mobile-difficulty-select" class="form-input w-full px-4 py-3 rounded-lg text-white text-sm">
+              <option value="">All Levels</option>
+              <option value="easy">Easy</option>
+              <option value="moderate">Moderate</option>
+              <option value="expert">Expert</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-sm text-gray-400 block mb-2">Sort By</label>
+            <select id="mobile-sort-select" class="form-input w-full px-4 py-3 rounded-lg text-white text-sm">
+              <option value="popularity">Popularity</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="newest">Newest</option>
+            </select>
+          </div>
+          <div class="flex gap-3">
+            <button id="mobile-clear-filters" class="flex-1 bg-gray-700 text-white px-4 py-3 !rounded-button text-sm font-semibold">Clear All</button>
+            <button class="apply-filters flex-1 bg-primary text-black px-4 py-3 !rounded-button text-sm font-semibold">Apply Filters</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Catalog Section -->
+    <section id="catalog" class="py-12 bg-secondary min-h-screen">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Results Info -->
+        <div class="mb-8">
+          <p class="text-gray-400" id="results-info">Showing all plants</p>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <!-- Products will be loaded here -->
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loading-indicator" class="text-center py-12 hidden">
+          <div class="loading-spinner mx-auto mb-4"></div>
+          <p class="text-gray-400">Loading more plants...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state flex-col items-center justify-center py-20">
+          <div class="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center mb-6">
+            <div class="w-12 h-12 flex items-center justify-center"><i class="ri-plant-line ri-3x text-gray-600"></i></div>
+          </div>
+          <h3 class="text-2xl font-semibold mb-4">No plants found</h3>
+          <p class="text-gray-400 mb-6 text-center max-w-md">
+            We couldn't find any plants matching your criteria. Try adjusting your filters or search terms.
+          </p>
+          <button id="reset-filters" class="bg-primary text-black px-6 py-3 !rounded-button font-semibold whitespace-nowrap">Reset Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
+          <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            Have questions about our plants or need help choosing the perfect green companion?
+          </p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Contact Form -->
+          <div class="fade-in">
+            <form id="contact-form" class="space-y-6">
+              <div>
+                <input type="text" name="name" placeholder="Your Name" required class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none">
+              </div>
+              <div>
+                <input type="email" name="email" placeholder="Your Email" required class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none">
+              </div>
+              <div>
+                <textarea name="message" rows="6" placeholder="Your Message" required class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none resize-none"></textarea>
+              </div>
+              <button type="submit" class="neon-glow bg-primary text-black px-8 py-3 !rounded-button font-semibold w-full whitespace-nowrap">
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="fade-in">
+            <div class="space-y-8">
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                  <div class="w-6 h-6 flex items-center justify-center"><i class="ri-map-pin-line ri-lg text-black"></i></div>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Visit Our Store</h3>
+                  <p class="text-gray-400">123 Garden Street, Green Valley, CA 90210</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                  <div class="w-6 h-6 flex items-center justify-center"><i class="ri-phone-line ri-lg text-black"></i></div>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Call Us</h3>
+                  <p class="text-gray-400">(555) 123-PLANT</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                  <div class="w-6 h-6 flex items-center justify-center"><i class="ri-mail-line ri-lg text-black"></i></div>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Email Us</h3>
+                  <p class="text-gray-400">hello@planthub.com</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                  <div class="w-6 h-6 flex items-center justify-center"><i class="ri-time-line ri-lg text-black"></i></div>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Store Hours</h3>
+                  <p class="text-gray-400">Mon-Fri: 9AM-7PM<br>Sat-Sun: 10AM-6PM</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Map -->
+            <div class="mt-8 h-64 rounded-lg overflow-hidden">
+              <div class="w-full h-full bg-center bg-cover" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png')"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <span class="font-['Pacifico'] text-2xl text-primary">PlantHub</span>
+            <p class="text-gray-400 mt-4">
+              Bringing nature into your home with premium plants and expert care guidance.
+            </p>
+            <div class="flex space-x-4 mt-6">
+              <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+                <div class="w-5 h-5 flex items-center justify-center"><i class="ri-facebook-fill"></i></div>
+              </a>
+              <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+                <div class="w-5 h-5 flex items-center justify-center"><i class="ri-instagram-fill"></i></div>
+              </a>
+              <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+                <div class="w-5 h-5 flex items-center justify-center"><i class="ri-twitter-fill"></i></div>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li><a href="index.html" class="text-gray-400 hover:text-primary transition-colors">Home</a></li>
+              <li><a href="#catalog" class="text-gray-400 hover:text-primary transition-colors">Catalog</a></li>
+              <li><a href="care-guides.html" class="text-gray-400 hover:text-primary transition-colors">Care Guides</a></li>
+              <li><a href="#contact" class="text-gray-400 hover:text-primary transition-colors">About</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Plant Care</h3>
+            <ul class="space-y-2">
+              <li><a href="care-guides.html" class="text-gray-400 hover:text-primary transition-colors">Care Guides</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Plant Problems</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Watering Tips</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Light Requirements</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+            <p class="text-gray-400 mb-4">Get plant care tips and special offers</p>
+            <div class="flex">
+              <input type="email" placeholder="Your email" class="form-input flex-1 px-4 py-2 rounded-l-lg text-white placeholder-gray-400 focus:outline-none">
+              <button class="bg-primary text-black px-4 py-2 rounded-r-lg font-semibold hover:bg-green-400 transition-colors whitespace-nowrap">Subscribe</button>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+          <p class="text-gray-400">© 2025 PlantHub. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // Mobile menu toggle
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+          mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+          }
+        });
+      });
+
+      // Plant data
+      const plantsData = [
+        {
+          id: 1, name: "Monstera Deliciosa", description: "Perfect for bright, indirect light", price: 45, category: "indoor", difficulty: "moderate", size: "Large", light: "Bright indirect", water: "Weekly",
+          image: "https://readdy.ai/api/search-image?query=monstera%20deliciosa%20plant%20in%20modern%20white%20ceramic%20pot%2C%20green%20tropical%20leaves%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-1&orientation=landscape"
+        },
+        {
+          id: 2, name: "Snake Plant", description: "Low maintenance, perfect for beginners", price: 35, category: "indoor", difficulty: "easy", size: "Medium", light: "Low to bright", water: "Bi-weekly",
+          image: "https://readdy.ai/api/search-image?query=snake%20plant%20sansevieria%20in%20modern%20black%20ceramic%20pot%2C%20tall%20green%20leaves%20with%20yellow%20edges%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-2&orientation=landscape"
+        },
+        {
+          id: 3, name: "Fiddle Leaf Fig", description: "Statement plant for large spaces", price: 85, category: "indoor", difficulty: "expert", size: "Large", light: "Bright indirect", water: "Weekly",
+          image: "https://readdy.ai/api/search-image?query=fiddle%20leaf%20fig%20plant%20in%20modern%20terracotta%20pot%2C%20large%20green%20leaves%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-3&orientation=landscape"
+        },
+        {
+          id: 4, name: "Rubber Plant", description: "Glossy leaves, air purifying", price: 55, category: "indoor", difficulty: "moderate", size: "Large", light: "Bright indirect", water: "Weekly",
+          image: "https://readdy.ai/api/search-image?query=rubber%20plant%20ficus%20elastica%20in%20modern%20white%20pot%2C%20glossy%20dark%20green%20leaves%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-4&orientation=landscape"
+        },
+        {
+          id: 5, name: "Peace Lily", description: "Beautiful white flowers, low light", price: 40, category: "flowering", difficulty: "easy", size: "Medium", light: "Low to medium", water: "Weekly",
+          image: "https://readdy.ai/api/search-image?query=peace%20lily%20plant%20in%20modern%20ceramic%20pot%2C%20white%20flowers%20and%20green%20leaves%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-5&orientation=landscape"
+        },
+        {
+          id: 6, name: "Golden Pothos", description: "Trailing vine, easy to propagate", price: 25, category: "indoor", difficulty: "easy", size: "Small", light: "Low to bright", water: "Weekly",
+          image: "https://readdy.ai/api/search-image?query=pothos%20golden%20plant%20in%20hanging%20basket%2C%20trailing%20green%20leaves%20with%20yellow%20variegation%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-6&orientation=landscape"
+        },
+        {
+          id: 7, name: "ZZ Plant", description: "Low light tolerant, drought resistant", price: 30, category: "indoor", difficulty: "easy", size: "Medium", light: "Low to bright", water: "Monthly",
+          image: "https://readdy.ai/api/search-image?query=zz%20plant%20zamioculcas%20zamiifolia%20in%20modern%20gray%20ceramic%20pot%2C%20glossy%20dark%20green%20leaves%2C%20indoor%20plant%20photography%2C%20clean%20white%20background%2C%20professional%20lighting%2C%20botanical%20aesthetic&width=400&height=300&seq=product-7&orientation=landscape"
+        }
+      ];
+
+      // Filter and display functionality
+      let currentFilters = { search: "", category: "", maxPrice: 200, difficulty: "", sort: "popularity" };
+      let filteredPlants = [...plantsData];
+      let displayedPlants = [];
+      let currentPage = 1;
+      const plantsPerPage = 12;
+
+      const productGrid = document.getElementById("product-grid");
+      const loadingIndicator = document.getElementById("loading-indicator");
+      const emptyState = document.querySelector(".empty-state");
+      const resultsInfo = document.getElementById("results-info");
+
+      function createPlantCard(plant) {
+        const difficultyClass = `difficulty-${plant.difficulty}`;
+        const categoryDisplay = plant.category.charAt(0).toUpperCase() + plant.category.slice(1);
+        return `
+          <div class="product-card rounded-lg overflow-hidden fade-in" data-plant-id="${plant.id}">
+            <div class="overflow-hidden relative">
+              <img src="${plant.image}" alt="${plant.name}" class="product-image w-full h-64 object-cover object-top">
+              <div class="absolute top-3 left-3"><span class="category-tag">${categoryDisplay}</span></div>
+              <div class="absolute top-3 right-3"><span class="difficulty-badge ${difficultyClass}">${plant.difficulty.charAt(0).toUpperCase() + plant.difficulty.slice(1)}</span></div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">${plant.name}</h3>
+              <p class="text-gray-400 mb-3">${plant.description}</p>
+              <div class="flex items-center gap-4 mb-4 text-sm text-gray-400">
+                <div class="flex items-center gap-1"><i class="ri-sun-line"></i><span>${plant.light}</span></div>
+                <div class="flex items-center gap-1"><i class="ri-drop-line"></i><span>${plant.water}</span></div>
+                <div class="flex items-center gap-1"><i class="ri-ruler-line"></i><span>${plant.size}</span></div>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-2xl font-bold text-primary">$${plant.price}</span>
+                <div class="flex gap-2">
+                  <button class="contact-btn bg-gray-800 text-primary px-4 py-2 !rounded-button font-semibold hover:bg-gray-700 transition-colors whitespace-nowrap"><i class="ri-phone-line mr-1"></i> Contact</button>
+                  <button class="cart-btn bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap"><i class="ri-shopping-cart-line mr-1"></i> Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function updateResultsInfo() {
+        const total = filteredPlants.length;
+        const showing = Math.min(displayedPlants.length, total);
+        resultsInfo.textContent = total === 0 ? "No plants found" : 
+                                 total === plantsData.length ? `Showing ${showing} of ${total} plants` : 
+                                 `Showing ${showing} of ${total} filtered plants`;
+      }
+
+      function renderPlants(append = false) {
+        if (!append) {
+          productGrid.innerHTML = "";
+          displayedPlants = [];
+        }
+        const startIndex = displayedPlants.length;
+        const endIndex = Math.min(startIndex + plantsPerPage, filteredPlants.length);
+        const plantsToShow = filteredPlants.slice(startIndex, endIndex);
+        
+        plantsToShow.forEach(plant => {
+          productGrid.insertAdjacentHTML("beforeend", createPlantCard(plant));
+          displayedPlants.push(plant);
+        });
+
+        updateResultsInfo();
+        emptyState.classList.toggle("active", filteredPlants.length === 0);
+        
+        setTimeout(() => {
+          productGrid.querySelectorAll(".fade-in:not(.visible)").forEach(card => card.classList.add("visible"));
+        }, 100);
+      }
+
+      function filterPlants() {
+        filteredPlants = plantsData.filter(plant => {
+          const matchesSearch = !currentFilters.search || 
+            plant.name.toLowerCase().includes(currentFilters.search.toLowerCase()) ||
+            plant.description.toLowerCase().includes(currentFilters.search.toLowerCase());
+          const matchesCategory = !currentFilters.category || plant.category === currentFilters.category;
+          const matchesPrice = plant.price <= currentFilters.maxPrice;
+          const matchesDifficulty = !currentFilters.difficulty || plant.difficulty === currentFilters.difficulty;
+          return matchesSearch && matchesCategory && matchesPrice && matchesDifficulty;
+        });
+
+        switch (currentFilters.sort) {
+          case "price-low": filteredPlants.sort((a, b) => a.price - b.price); break;
+          case "price-high": filteredPlants.sort((a, b) => b.price - a.price); break;
+          case "newest": filteredPlants.sort((a, b) => b.id - a.id); break;
+          default: filteredPlants.sort((a, b) => a.id - b.id);
+        }
+
+        currentPage = 1;
+        renderPlants(false);
+      }
+
+      function clearFilters() {
+        currentFilters = { search: "", category: "", maxPrice: 200, difficulty: "", sort: "popularity" };
+        ["search-input", "mobile-search-input"].forEach(id => document.getElementById(id).value = "");
+        ["price-slider", "mobile-price-slider"].forEach(id => {
+          document.getElementById(id).value = 200;
+          document.getElementById(id.replace("slider", "value")).textContent = "200";
+        });
+        ["mobile-category-select", "mobile-difficulty-select", "mobile-sort-select"].forEach(id => document.getElementById(id).value = "");
+        document.querySelectorAll(".dropdown-btn").forEach(btn => btn.querySelector("span").textContent = btn.classList.contains("category") ? "All Categories" : btn.classList.contains("difficulty") ? "All Levels" : "Sort by");
+        filterPlants();
+      }
+
+      // Event listeners
+      ["search-input", "mobile-search-input"].forEach(id => {
+        document.getElementById(id).addEventListener("input", e => {
+          currentFilters.search = e.target.value;
+          if (id === "search-input") document.getElementById("mobile-search-input").value = e.target.value;
+          else document.getElementById("search-input").value = e.target.value;
+          filterPlants();
+        });
+      });
+
+      ["price-slider", "mobile-price-slider"].forEach(id => {
+        document.getElementById(id).addEventListener("input", e => {
+          currentFilters.maxPrice = parseInt(e.target.value);
+          document.getElementById(id).value = e.target.value;
+          document.getElementById(id.replace("slider", "value")).textContent = e.target.value;
+        });
+      });
+
+      ["clear-filters", "mobile-clear-filters", "reset-filters"].forEach(id => {
+        document.getElementById(id)?.addEventListener("click", clearFilters);
+      });
+
+      // Dropdowns
+      document.querySelectorAll(".dropdown-btn").forEach(btn => {
+        btn.addEventListener("click", () => btn.nextElementSibling.classList.toggle("active"));
+      });
+
+      document.querySelectorAll(".category-option, .difficulty-option, .sort-option").forEach(option => {
+        option.addEventListener("click", function() {
+          const type = this.classList.contains("category-option") ? "category" : 
+                      this.classList.contains("difficulty-option") ? "difficulty" : "sort";
+          currentFilters[type] = this.dataset.value || this.value;
+          document.querySelector(`.${type}-dropdown-btn span`).textContent = this.textContent;
+          this.parentElement.parentElement.classList.remove("active");
+          filterPlants();
+        });
+      });
+
+      // Mobile filter modal
+      document.querySelectorAll(".mobile-filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => document.querySelector(".filter-modal").classList.add("active"));
+      });
+
+      document.querySelector(".close-filter-modal").addEventListener("click", () => {
+        document.querySelector(".filter-modal").classList.remove("active");
+      });
+
+      document.querySelector(".apply-filters").addEventListener("click", () => {
+        document.querySelector(".filter-modal").classList.remove("active");
+      });
+
+      // Infinite scroll
+      let isLoading = false;
+      window.addEventListener("scroll", () => {
+        if (isLoading || displayedPlants.length >= filteredPlants.length) return;
+        if (window.pageYOffset + window.innerHeight >= document.documentElement.scrollHeight - 1000) {
+          isLoading = true;
+          loadingIndicator.classList.remove("hidden");
+          setTimeout(() => {
+            renderPlants(true);
+            loadingIndicator.classList.add("hidden");
+            isLoading = false;
+          }, 800);
+        }
+      });
+
+      // Contact form submission
+      document.getElementById("contact-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        alert(`Thank you ${formData.get('name')}! Your message has been sent. We'll contact you at ${formData.get('email')} soon.`);
+        this.reset();
+      });
+
+      // Initial render
+      filterPlants();
+    </script>
+  </body>
+</html>
