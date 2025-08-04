@@ -166,12 +166,6 @@ transform: translateX(0);
     width: 300px;
   }
 
-  @media (max-width: 480px) {
-    #qwe {
-      width: 29%;
-      margin-left: -3px;
-    }
-  }
 </style>
 </head>
 <body>
@@ -713,12 +707,20 @@ Bringing nature into your home with premium plants and expert care guidance.
 <div>
 <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
 <p class="text-gray-400 mb-4">Get plant care tips and special offers</p>
-<div class="flex">
-<input type="email" placeholder="Your email" class="form-input flex-1 px-4 py-2 rounded-l-lg text-white placeholder-gray-400 focus:outline-none">
-<button class="bg-primary text-black px-4 py-2 rounded-r-lg font-semibold hover:bg-green-400 transition-colors whitespace-nowrap" id="qwe">
-Subscribe
-</button>
+<div class="flex flex-col sm:flex-row w-full max-w-md mx-auto">
+  <input
+    type="email"
+    placeholder="Your email"
+    class="form-input flex-1 px-4 py-2 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none text-white placeholder-gray-400 focus:outline-none bg-gray-700"
+  />
+  <button
+    class="bg-primary text-black px-4 py-2 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none font-semibold hover:bg-green-400 transition-colors whitespace-nowrap"
+    id="qwe"
+  >
+    Subscribe
+  </button>
 </div>
+
 </div>
 </div>
 <div class="border-t border-gray-800 mt-8 pt-8 text-center">
