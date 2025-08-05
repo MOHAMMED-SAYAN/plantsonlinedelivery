@@ -338,13 +338,17 @@
         </div>
         <div class="hidden md:block">
           <div class="ml-10 flex items-baseline space-x-8">
-            <a href="#home" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
-            <a href="#shop" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Shop</a>
+            <a href="#home"
+              class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium transition duration-300 ease-in-out transform hover:scale-110">Home</a>
+            <a href="#shop"
+              class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium transition duration-300 ease-in-out transform hover:scale-110">Shop</a>
             <a href="#portfolio"
-              class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Portfolio</a>
-            <a href="#features" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Why Choose
-              Us</a>
-            <a href="#contact" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Contact</a>
+              class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium transition duration-300 ease-in-out transform hover:scale-110">Portfolio</a>
+            <a href="#features"
+              class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium transition duration-300 ease-in-out transform hover:scale-110">Why
+              Choose Us</a>
+            <a href="#contact"
+              class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium transition duration-300 ease-in-out transform hover:scale-110">Contact</a>
           </div>
         </div>
         <div class="md:hidden">
@@ -357,16 +361,58 @@
       </div>
     </div>
     <!-- Mobile Menu -->
-    <div class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-screen bg-black/95 backdrop-blur-sm">
+    <div
+      class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-screen bg-black/95 backdrop-blur-sm transform transition-transform duration-300 ease-in-out translate-x-full">
       <div class="px-6 py-8 space-y-6">
-        <a href="#home" class="block text-white hover:text-primary text-lg font-medium">Home</a>
-        <a href="#shop" class="block text-white hover:text-primary text-lg font-medium">Shop</a>
-        <a href="#portfolio" class="block text-white hover:text-primary text-lg font-medium">Portfolio</a>
-        <a href="#features" class="block text-white hover:text-primary text-lg font-medium">Why Choose Us</a>
-        <a href="#contact" class="block text-white hover:text-primary text-lg font-medium">Contact</a>
+        <a href="#home"
+          class="block text-white hover:text-primary text-lg font-medium transition duration-300 ease-in-out transform hover:scale-110">Home</a>
+        <a href="#shop"
+          class="block text-white hover:text-primary text-lg font-medium transition duration-300 ease-in-out transform hover:scale-110">Shop</a>
+        <a href="#portfolio"
+          class="block text-white hover:text-primary text-lg font-medium transition duration-300 ease-in-out transform hover:scale-110">Portfolio</a>
+        <a href="#features"
+          class="block text-white hover:text-primary text-lg font-medium transition duration-300 ease-in-out transform hover:scale-110">Why
+          Choose Us</a>
+        <a href="#contact"
+          class="block text-white hover:text-primary text-lg font-medium transition duration-300 ease-in-out transform hover:scale-110">Contact</a>
       </div>
     </div>
   </nav>
+
+  <style>
+    .mobile-menu-btn {
+      cursor: pointer;
+    }
+
+    .mobile-menu-btn:hover {
+      animation: rotate 0.5s ease-in-out;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .mobile-menu {
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+  </style>
+
+  <script>
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
+      document.querySelector('.mobile-menu').classList.toggle('open');
+    });
+  </script>
   <!-- Hero Section -->
   <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
     <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -301,45 +301,88 @@
 
 <body>
   <!-- Navigation -->
-  <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-sm z-50">
+  <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-sm z-50 card1">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <div class="flex items-center">
           <span class="font-['Pacifico'] text-2xl text-primary">PlantHub</span>
         </div>
-
-        <!-- Desktop Menu -->
         <div class="hidden md:block">
           <div class="ml-10 flex items-baseline space-x-8">
-            <a href="index.html" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
-            <a href="catalog.html" class="nav-link text-primary px-3 py-2 text-sm font-medium">Catalog</a>
-            <a href="care-guides.html" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Care
-              Guides</a>
-            <a href="about.html" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">About</a>
-            <a href="#contact" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Contact</a>
+            <a href="index.html"
+              class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium transition duration-300 ease-in-out transform hover:scale-110">Home</a>
+            <a href="catalog.html"
+              class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium transition duration-300 ease-in-out transform hover:scale-110">Shop</a>
+            <a href="care-guides.html"
+              class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium transition duration-300 ease-in-out transform hover:scale-110">Portfolio</a>
+            <a href="about.html"
+              class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium transition duration-300 ease-in-out transform hover:scale-110">Why
+              Choose Us</a>
+            <a href="#contact"
+              class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium transition duration-300 ease-in-out transform hover:scale-110">Contact</a>
           </div>
         </div>
-
-        <!-- Mobile Menu Button -->
         <div class="md:hidden">
-          <button class="mobile-menu-btn text-white p-2">
-            <i class="ri-menu-line ri-2x"></i>
+          <button class="mobile-menu-btn text-white hover:text-primary">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-menu-line ri-lg"></i>
+            </div>
           </button>
         </div>
       </div>
     </div>
-
     <!-- Mobile Menu -->
-    <div class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-screen bg-black/95 backdrop-blur-sm">
+    <div
+      class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-screen bg-black/95 backdrop-blur-sm transform transition-transform duration-300 ease-in-out translate-x-full">
       <div class="px-6 py-8 space-y-6">
-        <a href="index.html" class="block text-white hover:text-primary text-lg font-medium">Home</a>
-        <a href="catalog.html" class="block text-primary text-lg font-medium">Catalog</a>
-        <a href="care-guides.html" class="block text-white hover:text-primary text-lg font-medium">Care Guides</a>
-        <a href="about.html" class="block text-white hover:text-primary text-lg font-medium">About</a>
-        <a href="#contact" class="block text-white hover:text-primary text-lg font-medium">Contact</a>
+        <a href="index.html"
+          class="block text-white hover:text-primary text-lg font-medium transition duration-300 ease-in-out transform hover:scale-110">Home</a>
+        <a href="catalog.html"
+          class="block text-white hover:text-primary text-lg font-medium transition duration-300 ease-in-out transform hover:scale-110">Shop</a>
+        <a href="care-guides.html"
+          class="block text-white hover:text-primary text-lg font-medium transition duration-300 ease-in-out transform hover:scale-110">Portfolio</a>
+        <a href="about.html"
+          class="block text-white hover:text-primary text-lg font-medium transition duration-300 ease-in-out transform hover:scale-110">Why
+          Choose Us</a>
+        <a href="#contact"
+          class="block text-white hover:text-primary text-lg font-medium transition duration-300 ease-in-out transform hover:scale-110">Contact</a>
       </div>
     </div>
   </nav>
+    <style>
+    .mobile-menu-btn {
+      cursor: pointer;
+    }
+
+    .mobile-menu-btn:hover {
+      animation: rotate 0.5s ease-in-out;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .mobile-menu {
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+  </style>
+
+  <script>
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
+      document.querySelector('.mobile-menu').classList.toggle('open');
+    });
+  </script>
   <!-- Hero Section -->
   <section class="hero-bg pt-24 pb-20 min-h-[80vh] flex items-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
