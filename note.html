@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - PlantHub Support</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00ff88",
+                        secondary: "#0f0f0f",
+                        success: "#22c55e",
+                        warning: "#f59e0b",
+                    },
+                    borderRadius: {
+                        none: "0px",
+                        sm: "4px",
+                        DEFAULT: "8px",
+                        md: "12px",
+                        lg: "16px",
+                        xl: "20px",
+                        "2xl": "24px",
+                        "3xl": "32px",
+                        full: "9999px",
+                        button: "8px",
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f0f0f;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #00ff88;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .contact-card {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.15);
+        }
+
+        .form-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #00ff88;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+            outline: none;
+        }
+
+        .faq-item {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 200px;
+        }
+
+        .chat-bubble {
+            transition: all 0.3s ease;
+        }
+
+        .chat-bubble:hover {
+            transform: scale(1.05);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .map-container {
+            background: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png') center/cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="font-['Pacifico'] text-2xl text-primary">PlantHub</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html"
+                            class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="catalog.html"
+                            class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Catalog</a>
+                        <a href="care-guides.html"
+                            class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Care Guides</a>
+                        <a href="about.html"
+                            class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">About</a>
+                        <a href="#contact" class="nav-link text-primary px-3 py-2 text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="mobile-menu-btn text-white">
+                        <i class="ri-menu-line ri-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="contact" class="pt-24 pb-16 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                We're here to help! Whether you have questions about plants, need care advice, or want to share your
+                plant journey, we're ready to assist.
+            </p>
+        </div>
+    </section>
+
+
+
+    <!-- Contact Form & Map -->
+    <section class="py-16 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div>
+                    <h2 class="text-2xl font-bold mb-6">Send Us a Message</h2>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">First Name *</label>
+                                <input type="text" class="form-input w-full px-4 py-3 rounded-lg"
+                                    placeholder="Your first name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Last Name *</label>
+                                <input type="text" class="form-input w-full px-4 py-3 rounded-lg"
+                                    placeholder="Your last name">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email Address *</label>
+                            <input type="email" class="form-input w-full px-4 py-3 rounded-lg"
+                                placeholder="your@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Subject *</label>
+                            <select class="form-input w-full px-4 py-3 rounded-lg">
+                                <option>Select a topic</option>
+                                <option>Plant Care Help</option>
+                                <option>Order Inquiry</option>
+                                <option>Shipping Question</option>
+                                <option>Plant Problem</option>
+                                <option>General Question</option>
+                                <option>Business Inquiry</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Message *</label>
+                            <textarea rows="5" class="form-input w-full px-4 py-3 rounded-lg resize-none"
+                                placeholder="Tell us how we can help..."></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Upload Photos (Optional)</label>
+                            <div class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center">
+                                <i class="ri-upload-cloud-line ri-2x text-gray-400 mb-2"></i>
+                                <p class="text-sm text-gray-400">Drag & drop images or <button type="button"
+                                        class="text-primary">browse</button></p>
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-primary text-black py-3 rounded-lg font-semibold hover:bg-green-400 transition-colors">
+                            <i class="ri-send-plane-line mr-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Map & Store Info -->
+                <div>
+                    <h2 class="text-2xl font-bold mb-6">Visit Our Store</h2>
+                    <div class="map-container h-64 rounded-lg mb-6"></div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="ri-map-pin-line text-primary ri-lg mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold">Store Address</h4>
+                                <p class="text-sm text-gray-400">123 Garden Street<br>Green Valley, CA 90210</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="ri-time-line text-primary ri-lg mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold">Store Hours</h4>
+                                <p class="text-sm text-gray-400">Mon-Fri: 9AM-7PM<br>Sat-Sun: 10AM-6PM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="ri-phone-line text-primary ri-lg mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold">Store Phone</h4>
+                                <p class="text-sm text-gray-400">(555) 123-PLANT</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="ri-mail-line text-primary ri-lg mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold">Store Email</h4>
+                                <p class="text-sm text-gray-400">store@planthub.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item rounded-lg">
+                    <button class="faq-question w-full p-4 text-left flex items-center justify-between"
+                        onclick="toggleFAQ(1)">
+                        <span class="font-semibold">How do I choose the right plant for my space?</span>
+                        <i class="ri-add-line ri-lg transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-300">Consider your light conditions, space size, and care experience. Use
+                            our Plant Finder tool or contact our experts for personalized recommendations. We consider
+                            factors like light levels, humidity, and your lifestyle to suggest perfect plants.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item rounded-lg">
+                    <button class="faq-question w-full p-4 text-left flex items-center justify-between"
+                        onclick="toggleFAQ(2)">
+                        <span class="font-semibold">What is your plant guarantee policy?</span>
+                        <i class="ri-add-line ri-lg transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-300">We offer a 30-day health guarantee on all plants. If your plant arrives
+                            damaged or doesn't thrive within 30 days, we'll replace it free of charge. Plus, our
+                            lifetime support ensures you always have expert help.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item rounded-lg">
+                    <button class="faq-question w-full p-4 text-left flex items-center justify-between"
+                        onclick="toggleFAQ(3)">
+                        <span class="font-semibold">How does shipping work?</span>
+                        <i class="ri-add-line ri-lg transition-transform" id="faq-icon-3"></i>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-300">We ship nationwide with climate-controlled packaging. Standard shipping
+                            takes 3-5 business days, express shipping 1-2 days. All plants are carefully packaged to
+                            ensure they arrive healthy and ready to thrive.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item rounded-lg">
+                    <button class="faq-question w-full p-4 text-left flex items-center justify-between"
+                        onclick="toggleFAQ(4)">
+                        <span class="font-semibold">Can I return or exchange plants?</span>
+                        <i class="ri-add-line ri-lg transition-transform" id="faq-icon-4"></i>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-300">Yes! We accept returns within 30 days for any reason. Plants must be in
+                            their original condition. Contact our support team to initiate a return or exchange. We'll
+                            provide a prepaid shipping label.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item rounded-lg">
+                    <button class="faq-question w-full p-4 text-left flex items-center justify-between"
+                        onclick="toggleFAQ(5)">
+                        <span class="font-semibold">Do you offer plant care consultations?</span>
+                        <i class="ri-add-line ri-lg transition-transform" id="faq-icon-5"></i>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-300">Absolutely! We offer free 15-minute consultations via phone, video
+                            call, or live chat. Our certified plant experts can help with plant selection, care advice,
+                            troubleshooting problems, and more.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Options -->
+    <section class="py-16 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-8">Additional Support</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-book-open-line ri-2x text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Care Guides</h3>
+                    <p class="text-gray-400 mb-4">Browse our comprehensive plant care guides</p>
+                    <a href="care-guides.html" class="text-primary hover:text-green-400 font-semibold">View Guides →</a>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-video-chat-line ri-2x text-purple-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Video Consultations</h3>
+                    <p class="text-gray-400 mb-4">Book a personalized plant care session</p>
+                    <button class="text-primary hover:text-green-400 font-semibold">Book Session →</button>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-community-line ri-2x text-orange-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Community Forum</h3>
+                    <p class="text-gray-400 mb-4">Connect with other plant parents</p>
+                    <a href="#" class="text-primary hover:text-green-400 font-semibold">Join Forum →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        // FAQ toggle
+        function toggleFAQ(id) {
+            const answer = document.querySelectorAll('.faq-answer')[id - 1];
+            const icon = document.getElementById(`faq-icon-${id}`);
+
+            answer.classList.toggle('active');
+            icon.style.transform = answer.classList.contains('active') ? 'rotate(45deg)' : 'rotate(0deg)';
+        }
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML = '<i class="ri-loader-4-line mr-2 animate-spin"></i>Sending...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="ri-check-line mr-2"></i>Message Sent!';
+                submitBtn.classList.add('bg-green-500');
+
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.classList.remove('bg-green-500');
+                    submitBtn.disabled = false;
+                    this.reset();
+                }, 3000);
+            }, 2000);
+        });
+
+        // Live chat simulation
+        document.querySelector('button:contains("Start Chat")').addEventListener('click', function () {
+            this.textContent = 'Connecting...';
+            setTimeout(() => {
+                this.textContent = 'Chat Connected!';
+                this.style.background = '#22c55e';
+            }, 1500);
+        });
+
+        // Fade in animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

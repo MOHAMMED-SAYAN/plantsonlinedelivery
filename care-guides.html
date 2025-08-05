@@ -1,62 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Plant Care Guides - PlantHub Premium Plants</title>
-    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#00ff88",
-              secondary: "#0f0f0f",
-            },
-            borderRadius: {
-              none: "0px",
-              sm: "4px",
-              DEFAULT: "8px",
-              md: "12px",
-              lg: "16px",
-              xl: "20px",
-              "2xl": "24px",
-              "3xl": "32px",
-              full: "9999px",
-              button: "8px",
-            },
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plant Care Guides - PlantHub Premium Plants</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#00ff88",
+            secondary: "#0f0f0f",
+          },
+          borderRadius: {
+            none: "0px",
+            sm: "4px",
+            DEFAULT: "8px",
+            md: "12px",
+            lg: "16px",
+            xl: "20px",
+            "2xl": "24px",
+            "3xl": "32px",
+            full: "9999px",
+            button: "8px",
           },
         },
-      };
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
-    />
-    <style>
-      :where([class^="ri-"])::before { content: "\f3c2"; }
-      * {
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+  <style>
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      }
-      body {
+    }
+
+    body {
       font-family: 'Poppins', sans-serif;
       background-color: #0f0f0f;
       color: #ffffff;
       overflow-x: hidden;
-      }
-      .nav-link {
+    }
+
+    .nav-link {
       position: relative;
       transition: color 0.3s ease;
-      }
-      .nav-link::after {
+    }
+
+    .nav-link::after {
       content: '';
       position: absolute;
       width: 0;
@@ -65,1232 +67,1295 @@
       left: 0;
       background-color: #00ff88;
       transition: width 0.3s ease;
-      }
-      .nav-link:hover::after {
+    }
+
+    .nav-link:hover::after {
       width: 100%;
-      }
-      .nav-link.active::after {
+    }
+
+    .nav-link.active::after {
       width: 100%;
-      }
-      .form-input {
+    }
+
+    .form-input {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       transition: all 0.3s ease;
-      }
-      .form-input:focus {
+    }
+
+    .form-input:focus {
       background: rgba(255, 255, 255, 0.15);
       border-color: #00ff88;
       box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
       outline: none;
-      }
-      .mobile-menu {
+    }
+
+    .mobile-menu {
       transform: translateX(100%);
       transition: transform 0.3s ease;
-      }
-      .mobile-menu.active {
+    }
+
+    .mobile-menu.active {
       transform: translateX(0);
-      }
-      .care-card {
+    }
+
+    .care-card {
       background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
       transition: all 0.3s ease;
-      }
-      .care-card:hover {
+    }
+
+    .care-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 15px 30px rgba(0, 255, 136, 0.2);
-      }
-      .problem-card {
+    }
+
+    .problem-card {
       background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
       transition: all 0.3s ease;
       min-width: 300px;
-      }
-      .problem-card:hover {
+    }
+
+    .problem-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0, 255, 136, 0.15);
-      }
-      .season-card {
+    }
+
+    .season-card {
       background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
       transition: all 0.3s ease;
-      }
-      .season-card:hover {
+    }
+
+    .season-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0, 255, 136, 0.15);
-      }
-      .tool-card {
+    }
+
+    .tool-card {
       background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
       transition: all 0.3s ease;
-      }
-      .tool-card:hover {
+    }
+
+    .tool-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0, 255, 136, 0.15);
-      }
-      .resource-card {
+    }
+
+    .resource-card {
       background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
       transition: all 0.3s ease;
-      }
-      .resource-card:hover {
+    }
+
+    .resource-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0, 255, 136, 0.15);
-      }
-      .fade-in {
+    }
+
+    .fade-in {
       opacity: 0;
       transform: translateY(30px);
       transition: all 0.6s ease;
-      }
-      .fade-in.visible {
+    }
+
+    .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
-      }
-      .hero-bg {
+    }
+
+    .hero-bg {
       background: linear-gradient(135deg, rgba(15, 15, 15, 0.8), rgba(15, 15, 15, 0.6)), url('https://readdy.ai/api/search-image?query=lush%20green%20indoor%20garden%20with%20various%20tropical%20plants%2C%20monstera%2C%20fiddle%20leaf%20fig%2C%20snake%20plants%2C%20natural%20lighting%20from%20large%20windows%2C%20modern%20plant%20care%20setup%2C%20watering%20cans%20and%20gardening%20tools%2C%20peaceful%20botanical%20atmosphere%2C%20professional%20photography%2C%20high%20resolution&width=1920&height=800&seq=hero-care&orientation=landscape');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-      }
-      .calculator-input {
+    }
+
+    .calculator-input {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       transition: all 0.3s ease;
-      }
-      .calculator-input:focus {
+    }
+
+    .calculator-input:focus {
       background: rgba(255, 255, 255, 0.15);
       border-color: #00ff88;
       box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
       outline: none;
-      }
-      .calculator-result {
+    }
+
+    .calculator-result {
       background: rgba(0, 255, 136, 0.1);
       border: 1px solid rgba(0, 255, 136, 0.3);
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Navigation -->
-     <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-sm z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-          <div class="flex items-center">
-            <span class="font-['Pacifico'] text-2xl text-primary">PlantHub</span>
-          </div>
-          
-          <!-- Desktop Menu -->
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-8">
-              <a href="index.html" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
-              <a href="catalog.html" class="nav-link text-primary px-3 py-2 text-sm font-medium">Catalog</a>
-              <a href="care-guides.html" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Care Guides</a>
-              <a href="about.html" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">About</a>
-              <a href="#contact" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Contact</a>
-            </div>
-          </div>
+    }
 
-          <!-- Mobile Menu Button -->
-          <div class="md:hidden">
-            <button class="mobile-menu-btn text-white p-2">
-              <i class="ri-menu-line ri-2x"></i>
-            </button>
-          </div>
-        </div>
-      </div>
 
-      <!-- Mobile Menu -->
-      <div class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-screen bg-black/95 backdrop-blur-sm">
-        <div class="px-6 py-8 space-y-6">
-          <a href="index.html" class="block text-white hover:text-primary text-lg font-medium">Home</a>
-          <a href="catalog.html" class="block text-primary text-lg font-medium">Catalog</a>
-          <a href="care-guides.html" class="block text-white hover:text-primary text-lg font-medium">Care Guides</a>
-          <a href="about.html" class="block text-white hover:text-primary text-lg font-medium">About</a>
-          <a href="#contact" class="block text-white hover:text-primary text-lg font-medium">Contact</a>
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f0f0f;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #00ff88;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .contact-card {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 255, 136, 0.15);
+    }
+
+    .form-input {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #00ff88;
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+      outline: none;
+    }
+
+    .faq-item {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      background: rgba(0, 255, 136, 0.05);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-answer.active {
+      max-height: 200px;
+    }
+
+    .chat-bubble {
+      transition: all 0.3s ease;
+    }
+
+    .chat-bubble:hover {
+      transform: scale(1.05);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .map-container {
+      background: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png') center/cover;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-sm z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <span class="font-['Pacifico'] text-2xl text-primary">PlantHub</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-8">
+            <a href="index.html" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
+            <a href="catalog.html" class="nav-link text-primary px-3 py-2 text-sm font-medium">Catalog</a>
+            <a href="care-guides.html" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Care
+              Guides</a>
+            <a href="about.html" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">About</a>
+            <a href="#contact" class="nav-link text-white hover:text-primary px-3 py-2 text-sm font-medium">Contact</a>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button class="mobile-menu-btn text-white p-2">
+            <i class="ri-menu-line ri-2x"></i>
+          </button>
         </div>
       </div>
-    </nav>
-    <!-- Hero Section -->
-    <section class="hero-bg pt-24 pb-20 min-h-[60vh] flex items-center">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div class="text-center">
-          <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in">
-            Plant Care Guides
-          </h1>
-          <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-8 fade-in">
-            Everything you need to keep your plants healthy and thriving. From
-            beginner basics to expert techniques, discover comprehensive care
-            resources for every plant parent.
-          </p>
-          <div class="max-w-2xl mx-auto fade-in">
-            <div class="relative">
-              <input
-                type="text"
-                id="care-search"
-                placeholder="Search for plant care topics, problems, or specific plants..."
-                class="form-input w-full pl-12 pr-4 py-4 rounded-lg text-white placeholder-gray-400 text-lg"
-              />
-              <div
-                class="absolute left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center"
-              >
-                <i class="ri-search-line text-gray-400 ri-lg"></i>
-              </div>
-            </div>
-          </div>
-        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-screen bg-black/95 backdrop-blur-sm">
+      <div class="px-6 py-8 space-y-6">
+        <a href="index.html" class="block text-white hover:text-primary text-lg font-medium">Home</a>
+        <a href="catalog.html" class="block text-primary text-lg font-medium">Catalog</a>
+        <a href="care-guides.html" class="block text-white hover:text-primary text-lg font-medium">Care Guides</a>
+        <a href="about.html" class="block text-white hover:text-primary text-lg font-medium">About</a>
+        <a href="#contact" class="block text-white hover:text-primary text-lg font-medium">Contact</a>
       </div>
-    </section>
-    <!-- Care Categories Grid -->
-    <section class="py-16 bg-secondary">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold mb-4">Essential Care Categories</h2>
-          <p class="text-xl text-gray-400">
-            Master the fundamentals of plant care with our comprehensive guides
-          </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="care-card rounded-lg p-8 fade-in">
-            <div class="flex items-center mb-6">
-              <div
-                class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mr-6"
-              >
-                <div class="w-8 h-8 flex items-center justify-center">
-                  <i class="ri-drop-line ri-2x text-primary"></i>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2">Watering Guide</h3>
-                <p class="text-gray-400">
-                  Learn proper watering techniques, schedules, and
-                  troubleshooting
-                </p>
-              </div>
-            </div>
-            <p class="text-gray-300 mb-6">
-              Master the art of watering with our comprehensive guide covering
-              frequency, techniques, water quality, and seasonal adjustments.
-              Understand your plants' unique needs and avoid common watering
-              mistakes.
-            </p>
-            <button
-              class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap"
-            >
-              Learn More
-            </button>
-          </div>
-          <div class="care-card rounded-lg p-8 fade-in">
-            <div class="flex items-center mb-6">
-              <div
-                class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mr-6"
-              >
-                <div class="w-8 h-8 flex items-center justify-center">
-                  <i class="ri-sun-line ri-2x text-primary"></i>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2">
-                  Lighting Requirements
-                </h3>
-                <p class="text-gray-400">
-                  Understand light needs and optimize placement for growth
-                </p>
-              </div>
-            </div>
-            <p class="text-gray-300 mb-6">
-              Discover how to provide the perfect lighting conditions for your
-              plants. Learn about light intensity, duration, and quality, plus
-              how to use artificial lighting effectively.
-            </p>
-            <button
-              class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap"
-            >
-              Learn More
-            </button>
-          </div>
-          <div class="care-card rounded-lg p-8 fade-in">
-            <div class="flex items-center mb-6">
-              <div
-                class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mr-6"
-              >
-                <div class="w-8 h-8 flex items-center justify-center">
-                  <i class="ri-leaf-line ri-2x text-primary"></i>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2">Fertilizing Tips</h3>
-                <p class="text-gray-400">
-                  Nutrition basics and feeding schedules for healthy growth
-                </p>
-              </div>
-            </div>
-            <p class="text-gray-300 mb-6">
-              Feed your plants right with our detailed fertilizing guide. Learn
-              about nutrient requirements, fertilizer types, application
-              methods, and seasonal feeding schedules.
-            </p>
-            <button
-              class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap"
-            >
-              Learn More
-            </button>
-          </div>
-          <div class="care-card rounded-lg p-8 fade-in">
-            <div class="flex items-center mb-6">
-              <div
-                class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mr-6"
-              >
-                <div class="w-8 h-8 flex items-center justify-center">
-                  <i class="ri-plant-line ri-2x text-primary"></i>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2">
-                  Repotting Instructions
-                </h3>
-                <p class="text-gray-400">
-                  When and how to repot for continued healthy growth
-                </p>
-              </div>
-            </div>
-            <p class="text-gray-300 mb-6">
-              Know when it's time to repot and how to do it safely. Our guide
-              covers pot selection, soil preparation, timing, and post-repotting
-              care for stress-free transitions.
-            </p>
-            <button
-              class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap"
-            >
-              Learn More
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Common Problems Section -->
-    <section class="py-16 bg-gray-900">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold mb-4">Common Plant Problems</h2>
-          <p class="text-xl text-gray-400">
-            Quick solutions for the most frequent plant issues
-          </p>
-        </div>
-        <div class="overflow-x-auto">
-          <div class="flex space-x-6 pb-4" style="width: max-content;">
-            <div class="problem-card rounded-lg overflow-hidden fade-in">
-              <img
-                src="https://readdy.ai/api/search-image?query=plant%20with%20yellowing%20leaves%20close%20up%2C%20houseplant%20problem%2C%20yellow%20leaf%20disease%2C%20plant%20care%20issue%2C%20botanical%20photography%2C%20clean%20background%2C%20professional%20lighting&width=300&height=200&seq=problem-1&orientation=landscape"
-                alt="Yellowing Leaves"
-                class="w-full h-48 object-cover object-top"
-              />
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Yellowing Leaves</h3>
-                <p class="text-gray-400 mb-4">
-                  Overwatering, nutrient deficiency, or natural aging can cause
-                  yellow leaves.
-                </p>
-                <button class="text-primary hover:text-green-400 font-semibold">
-                  Read Solution →
-                </button>
-              </div>
-            </div>
-            <div class="problem-card rounded-lg overflow-hidden fade-in">
-              <img
-                src="https://readdy.ai/api/search-image?query=plant%20pest%20infestation%20on%20leaves%2C%20aphids%20or%20spider%20mites%20on%20houseplant%2C%20plant%20problem%2C%20botanical%20photography%2C%20clean%20background%2C%20professional%20lighting&width=300&height=200&seq=problem-2&orientation=landscape"
-                alt="Pest Infestation"
-                class="w-full h-48 object-cover object-top"
-              />
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Pest Infestation</h3>
-                <p class="text-gray-400 mb-4">
-                  Aphids, spider mites, and scale insects can damage your
-                  plants.
-                </p>
-                <button class="text-primary hover:text-green-400 font-semibold">
-                  Read Solution →
-                </button>
-              </div>
-            </div>
-            <div class="problem-card rounded-lg overflow-hidden fade-in">
-              <img
-                src="https://readdy.ai/api/search-image?query=plant%20root%20rot%20problem%2C%20black%20mushy%20roots%2C%20overwatered%20plant%20roots%2C%20plant%20disease%2C%20botanical%20photography%2C%20clean%20background%2C%20professional%20lighting&width=300&height=200&seq=problem-3&orientation=landscape"
-                alt="Root Rot"
-                class="w-full h-48 object-cover object-top"
-              />
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Root Rot</h3>
-                <p class="text-gray-400 mb-4">
-                  Overwatering leads to fungal infections that damage root
-                  systems.
-                </p>
-                <button class="text-primary hover:text-green-400 font-semibold">
-                  Read Solution →
-                </button>
-              </div>
-            </div>
-            <div class="problem-card rounded-lg overflow-hidden fade-in">
-              <img
-                src="https://readdy.ai/api/search-image?query=plant%20with%20brown%20crispy%20leaf%20tips%2C%20houseplant%20problem%2C%20dry%20air%20damage%2C%20plant%20care%20issue%2C%20botanical%20photography%2C%20clean%20background%2C%20professional%20lighting&width=300&height=200&seq=problem-4&orientation=landscape"
-                alt="Brown Leaf Tips"
-                class="w-full h-48 object-cover object-top"
-              />
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Brown Leaf Tips</h3>
-                <p class="text-gray-400 mb-4">
-                  Low humidity, fluoride in water, or over-fertilization causes
-                  brown tips.
-                </p>
-                <button class="text-primary hover:text-green-400 font-semibold">
-                  Read Solution →
-                </button>
-              </div>
-            </div>
-            <div class="problem-card rounded-lg overflow-hidden fade-in">
-              <img
-                src="https://readdy.ai/api/search-image?query=wilting%20drooping%20plant%20leaves%2C%20houseplant%20problem%2C%20underwatered%20plant%2C%20plant%20care%20issue%2C%20botanical%20photography%2C%20clean%20background%2C%20professional%20lighting&width=300&height=200&seq=problem-5&orientation=landscape"
-                alt="Wilting Plants"
-                class="w-full h-48 object-cover object-top"
-              />
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Wilting Plants</h3>
-                <p class="text-gray-400 mb-4">
-                  Underwatering, root problems, or shock can cause plants to
-                  wilt.
-                </p>
-                <button class="text-primary hover:text-green-400 font-semibold">
-                  Read Solution →
-                </button>
-              </div>
-            </div>
-            <div class="problem-card rounded-lg overflow-hidden fade-in">
-              <img
-                src="https://readdy.ai/api/search-image?query=plant%20with%20no%20new%20growth%2C%20stunted%20houseplant%2C%20slow%20growing%20plant%20problem%2C%20plant%20care%20issue%2C%20botanical%20photography%2C%20clean%20background%2C%20professional%20lighting&width=300&height=200&seq=problem-6&orientation=landscape"
-                alt="Slow Growth"
-                class="w-full h-48 object-cover object-top"
-              />
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Slow Growth</h3>
-                <p class="text-gray-400 mb-4">
-                  Poor lighting, nutrient deficiency, or wrong pot size affects
-                  growth.
-                </p>
-                <button class="text-primary hover:text-green-400 font-semibold">
-                  Read Solution →
-                </button>
-              </div>
+    </div>
+  </nav>
+  <!-- Hero Section -->
+  <section class="hero-bg pt-24 pb-20 min-h-[60vh] flex items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="text-center">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in">
+          Plant Care Guides
+        </h1>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-8 fade-in">
+          Everything you need to keep your plants healthy and thriving. From
+          beginner basics to expert techniques, discover comprehensive care
+          resources for every plant parent.
+        </p>
+        <div class="max-w-2xl mx-auto fade-in">
+          <div class="relative">
+            <input type="text" id="care-search"
+              placeholder="Search for plant care topics, problems, or specific plants..."
+              class="form-input w-full pl-12 pr-4 py-4 rounded-lg text-white placeholder-gray-400 text-lg" />
+            <div class="absolute left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center">
+              <i class="ri-search-line text-gray-400 ri-lg"></i>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <!-- Seasonal Care Tips -->
-    <section class="py-16 bg-secondary">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold mb-4">Seasonal Care Tips</h2>
-          <p class="text-xl text-gray-400">
-            Adapt your plant care routine throughout the year
-          </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="season-card rounded-lg p-6 fade-in">
-            <div
-              class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-6 mx-auto"
-            >
+    </div>
+  </section>
+  <!-- Care Categories Grid -->
+  <section class="py-16 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4">Essential Care Categories</h2>
+        <p class="text-xl text-gray-400">
+          Master the fundamentals of plant care with our comprehensive guides
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="care-card rounded-lg p-8 fade-in">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mr-6">
               <div class="w-8 h-8 flex items-center justify-center">
-                <i class="ri-leaf-line ri-2x text-green-500"></i>
+                <i class="ri-drop-line ri-2x text-primary"></i>
               </div>
             </div>
-            <h3 class="text-xl font-semibold mb-4 text-center">Spring Care</h3>
-            <ul class="text-gray-300 space-y-2 text-sm">
-              <li>• Increase watering frequency</li>
-              <li>• Start fertilizing schedule</li>
-              <li>• Repot root-bound plants</li>
-              <li>• Prune dead growth</li>
-              <li>• Move plants to brighter spots</li>
-            </ul>
+            <div>
+              <h3 class="text-2xl font-semibold mb-2">Watering Guide</h3>
+              <p class="text-gray-400">
+                Learn proper watering techniques, schedules, and
+                troubleshooting
+              </p>
+            </div>
           </div>
-          <div class="season-card rounded-lg p-6 fade-in">
-            <div
-              class="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mb-6 mx-auto"
-            >
+          <p class="text-gray-300 mb-6">
+            Master the art of watering with our comprehensive guide covering
+            frequency, techniques, water quality, and seasonal adjustments.
+            Understand your plants' unique needs and avoid common watering
+            mistakes.
+          </p>
+          <button
+            class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap">
+            Learn More
+          </button>
+        </div>
+        <div class="care-card rounded-lg p-8 fade-in">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mr-6">
               <div class="w-8 h-8 flex items-center justify-center">
-                <i class="ri-sun-line ri-2x text-yellow-500"></i>
+                <i class="ri-sun-line ri-2x text-primary"></i>
               </div>
             </div>
-            <h3 class="text-xl font-semibold mb-4 text-center">Summer Care</h3>
-            <ul class="text-gray-300 space-y-2 text-sm">
-              <li>• Water more frequently</li>
-              <li>• Provide shade from harsh sun</li>
-              <li>• Increase humidity levels</li>
-              <li>• Monitor for pests</li>
-              <li>• Move plants outdoors</li>
-            </ul>
+            <div>
+              <h3 class="text-2xl font-semibold mb-2">
+                Lighting Requirements
+              </h3>
+              <p class="text-gray-400">
+                Understand light needs and optimize placement for growth
+              </p>
+            </div>
           </div>
-          <div class="season-card rounded-lg p-6 fade-in">
-            <div
-              class="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mb-6 mx-auto"
-            >
+          <p class="text-gray-300 mb-6">
+            Discover how to provide the perfect lighting conditions for your
+            plants. Learn about light intensity, duration, and quality, plus
+            how to use artificial lighting effectively.
+          </p>
+          <button
+            class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap">
+            Learn More
+          </button>
+        </div>
+        <div class="care-card rounded-lg p-8 fade-in">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mr-6">
               <div class="w-8 h-8 flex items-center justify-center">
-                <i class="ri-maple-leaf-line ri-2x text-orange-500"></i>
+                <i class="ri-leaf-line ri-2x text-primary"></i>
               </div>
             </div>
-            <h3 class="text-xl font-semibold mb-4 text-center">Fall Care</h3>
-            <ul class="text-gray-300 space-y-2 text-sm">
-              <li>• Reduce watering gradually</li>
-              <li>• Stop fertilizing</li>
-              <li>• Bring outdoor plants inside</li>
-              <li>• Check for pest hitchhikers</li>
-              <li>• Prepare for dormancy</li>
-            </ul>
+            <div>
+              <h3 class="text-2xl font-semibold mb-2">Fertilizing Tips</h3>
+              <p class="text-gray-400">
+                Nutrition basics and feeding schedules for healthy growth
+              </p>
+            </div>
           </div>
-          <div class="season-card rounded-lg p-6 fade-in">
-            <div
-              class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mb-6 mx-auto"
-            >
+          <p class="text-gray-300 mb-6">
+            Feed your plants right with our detailed fertilizing guide. Learn
+            about nutrient requirements, fertilizer types, application
+            methods, and seasonal feeding schedules.
+          </p>
+          <button
+            class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap">
+            Learn More
+          </button>
+        </div>
+        <div class="care-card rounded-lg p-8 fade-in">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mr-6">
               <div class="w-8 h-8 flex items-center justify-center">
-                <i class="ri-snowflake-line ri-2x text-blue-500"></i>
+                <i class="ri-plant-line ri-2x text-primary"></i>
               </div>
             </div>
-            <h3 class="text-xl font-semibold mb-4 text-center">Winter Care</h3>
-            <ul class="text-gray-300 space-y-2 text-sm">
-              <li>• Water less frequently</li>
-              <li>• Provide supplemental lighting</li>
-              <li>• Increase humidity indoors</li>
-              <li>• Avoid cold drafts</li>
-              <li>• Monitor for dry air damage</li>
-            </ul>
+            <div>
+              <h3 class="text-2xl font-semibold mb-2">
+                Repotting Instructions
+              </h3>
+              <p class="text-gray-400">
+                When and how to repot for continued healthy growth
+              </p>
+            </div>
           </div>
+          <p class="text-gray-300 mb-6">
+            Know when it's time to repot and how to do it safely. Our guide
+            covers pot selection, soil preparation, timing, and post-repotting
+            care for stress-free transitions.
+          </p>
+          <button
+            class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap">
+            Learn More
+          </button>
         </div>
       </div>
-    </section>
-    <!-- Beginner's Guide Section -->
-    <section class="py-16 bg-gray-900">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="fade-in">
-            <h2 class="text-4xl font-bold mb-6">New to Plants?</h2>
-            <p class="text-xl text-gray-300 mb-8">
-              Start your plant parent journey with confidence. Our
-              beginner-friendly guides cover everything you need to know to keep
-              your first plants happy and healthy.
-            </p>
-            <div class="space-y-6">
-              <div class="flex items-start">
-                <div
-                  class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-4 mt-1"
-                >
-                  <div class="w-4 h-4 flex items-center justify-center">
-                    <i class="ri-check-line text-primary"></i>
-                  </div>
-                </div>
-                <div>
-                  <h3 class="text-lg font-semibold mb-2">
-                    Basic Care Principles
-                  </h3>
-                  <p class="text-gray-400">
-                    Learn the fundamental concepts of plant care that apply to
-                    most houseplants.
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div
-                  class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-4 mt-1"
-                >
-                  <div class="w-4 h-4 flex items-center justify-center">
-                    <i class="ri-close-line text-red-400"></i>
-                  </div>
-                </div>
-                <div>
-                  <h3 class="text-lg font-semibold mb-2">
-                    Common Mistakes to Avoid
-                  </h3>
-                  <p class="text-gray-400">
-                    Discover the most frequent beginner errors and how to
-                    prevent them.
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div
-                  class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-4 mt-1"
-                >
-                  <div class="w-4 h-4 flex items-center justify-center">
-                    <i class="ri-star-line text-yellow-400"></i>
-                  </div>
-                </div>
-                <div>
-                  <h3 class="text-lg font-semibold mb-2">
-                    Recommended Starter Plants
-                  </h3>
-                  <p class="text-gray-400">
-                    Find the perfect low-maintenance plants to begin your
-                    collection.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <button
-              class="bg-primary text-black px-8 py-4 !rounded-button font-semibold text-lg hover:bg-green-400 transition-colors whitespace-nowrap mt-8"
-            >
-              Start Your Plant Journey
-            </button>
-          </div>
-          <div class="fade-in">
+    </div>
+  </section>
+  <!-- Common Problems Section -->
+  <section class="py-16 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4">Common Plant Problems</h2>
+        <p class="text-xl text-gray-400">
+          Quick solutions for the most frequent plant issues
+        </p>
+      </div>
+      <div class="overflow-x-auto">
+        <div class="flex space-x-6 pb-4" style="width: max-content;">
+          <div class="problem-card rounded-lg overflow-hidden fade-in">
             <img
-              src="https://readdy.ai/api/search-image?query=happy%20person%20caring%20for%20houseplants%2C%20beginner%20plant%20parent%20watering%20plants%2C%20indoor%20garden%20setup%2C%20plant%20care%20tools%2C%20peaceful%20home%20environment%2C%20natural%20lighting%2C%20botanical%20lifestyle%20photography&width=600&height=400&seq=beginner-guide&orientation=landscape"
-              alt="Beginner Plant Care"
-              class="w-full h-96 object-cover object-top rounded-lg"
-            />
+              src="https://readdy.ai/api/search-image?query=plant%20with%20yellowing%20leaves%20close%20up%2C%20houseplant%20problem%2C%20yellow%20leaf%20disease%2C%20plant%20care%20issue%2C%20botanical%20photography%2C%20clean%20background%2C%20professional%20lighting&width=300&height=200&seq=problem-1&orientation=landscape"
+              alt="Yellowing Leaves" class="w-full h-48 object-cover object-top" />
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Yellowing Leaves</h3>
+              <p class="text-gray-400 mb-4">
+                Overwatering, nutrient deficiency, or natural aging can cause
+                yellow leaves.
+              </p>
+              <button class="text-primary hover:text-green-400 font-semibold">
+                Read Solution →
+              </button>
+            </div>
+          </div>
+          <div class="problem-card rounded-lg overflow-hidden fade-in">
+            <img
+              src="https://readdy.ai/api/search-image?query=plant%20pest%20infestation%20on%20leaves%2C%20aphids%20or%20spider%20mites%20on%20houseplant%2C%20plant%20problem%2C%20botanical%20photography%2C%20clean%20background%2C%20professional%20lighting&width=300&height=200&seq=problem-2&orientation=landscape"
+              alt="Pest Infestation" class="w-full h-48 object-cover object-top" />
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Pest Infestation</h3>
+              <p class="text-gray-400 mb-4">
+                Aphids, spider mites, and scale insects can damage your
+                plants.
+              </p>
+              <button class="text-primary hover:text-green-400 font-semibold">
+                Read Solution →
+              </button>
+            </div>
+          </div>
+          <div class="problem-card rounded-lg overflow-hidden fade-in">
+            <img
+              src="https://readdy.ai/api/search-image?query=plant%20root%20rot%20problem%2C%20black%20mushy%20roots%2C%20overwatered%20plant%20roots%2C%20plant%20disease%2C%20botanical%20photography%2C%20clean%20background%2C%20professional%20lighting&width=300&height=200&seq=problem-3&orientation=landscape"
+              alt="Root Rot" class="w-full h-48 object-cover object-top" />
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Root Rot</h3>
+              <p class="text-gray-400 mb-4">
+                Overwatering leads to fungal infections that damage root
+                systems.
+              </p>
+              <button class="text-primary hover:text-green-400 font-semibold">
+                Read Solution →
+              </button>
+            </div>
+          </div>
+          <div class="problem-card rounded-lg overflow-hidden fade-in">
+            <img
+              src="https://readdy.ai/api/search-image?query=plant%20with%20brown%20crispy%20leaf%20tips%2C%20houseplant%20problem%2C%20dry%20air%20damage%2C%20plant%20care%20issue%2C%20botanical%20photography%2C%20clean%20background%2C%20professional%20lighting&width=300&height=200&seq=problem-4&orientation=landscape"
+              alt="Brown Leaf Tips" class="w-full h-48 object-cover object-top" />
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Brown Leaf Tips</h3>
+              <p class="text-gray-400 mb-4">
+                Low humidity, fluoride in water, or over-fertilization causes
+                brown tips.
+              </p>
+              <button class="text-primary hover:text-green-400 font-semibold">
+                Read Solution →
+              </button>
+            </div>
+          </div>
+          <div class="problem-card rounded-lg overflow-hidden fade-in">
+            <img
+              src="https://readdy.ai/api/search-image?query=wilting%20drooping%20plant%20leaves%2C%20houseplant%20problem%2C%20underwatered%20plant%2C%20plant%20care%20issue%2C%20botanical%20photography%2C%20clean%20background%2C%20professional%20lighting&width=300&height=200&seq=problem-5&orientation=landscape"
+              alt="Wilting Plants" class="w-full h-48 object-cover object-top" />
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Wilting Plants</h3>
+              <p class="text-gray-400 mb-4">
+                Underwatering, root problems, or shock can cause plants to
+                wilt.
+              </p>
+              <button class="text-primary hover:text-green-400 font-semibold">
+                Read Solution →
+              </button>
+            </div>
+          </div>
+          <div class="problem-card rounded-lg overflow-hidden fade-in">
+            <img
+              src="https://readdy.ai/api/search-image?query=plant%20with%20no%20new%20growth%2C%20stunted%20houseplant%2C%20slow%20growing%20plant%20problem%2C%20plant%20care%20issue%2C%20botanical%20photography%2C%20clean%20background%2C%20professional%20lighting&width=300&height=200&seq=problem-6&orientation=landscape"
+              alt="Slow Growth" class="w-full h-48 object-cover object-top" />
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Slow Growth</h3>
+              <p class="text-gray-400 mb-4">
+                Poor lighting, nutrient deficiency, or wrong pot size affects
+                growth.
+              </p>
+              <button class="text-primary hover:text-green-400 font-semibold">
+                Read Solution →
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-    <!-- Interactive Tools -->
-    <section class="py-16 bg-secondary">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold mb-4">Interactive Care Tools</h2>
-          <p class="text-xl text-gray-400">
-            Smart calculators and tools to optimize your plant care routine
+    </div>
+  </section>
+  <!-- Seasonal Care Tips -->
+  <section class="py-16 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4">Seasonal Care Tips</h2>
+        <p class="text-xl text-gray-400">
+          Adapt your plant care routine throughout the year
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="season-card rounded-lg p-6 fade-in">
+          <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-leaf-line ri-2x text-green-500"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mb-4 text-center">Spring Care</h3>
+          <ul class="text-gray-300 space-y-2 text-sm">
+            <li>• Increase watering frequency</li>
+            <li>• Start fertilizing schedule</li>
+            <li>• Repot root-bound plants</li>
+            <li>• Prune dead growth</li>
+            <li>• Move plants to brighter spots</li>
+          </ul>
+        </div>
+        <div class="season-card rounded-lg p-6 fade-in">
+          <div class="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-sun-line ri-2x text-yellow-500"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mb-4 text-center">Summer Care</h3>
+          <ul class="text-gray-300 space-y-2 text-sm">
+            <li>• Water more frequently</li>
+            <li>• Provide shade from harsh sun</li>
+            <li>• Increase humidity levels</li>
+            <li>• Monitor for pests</li>
+            <li>• Move plants outdoors</li>
+          </ul>
+        </div>
+        <div class="season-card rounded-lg p-6 fade-in">
+          <div class="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-maple-leaf-line ri-2x text-orange-500"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mb-4 text-center">Fall Care</h3>
+          <ul class="text-gray-300 space-y-2 text-sm">
+            <li>• Reduce watering gradually</li>
+            <li>• Stop fertilizing</li>
+            <li>• Bring outdoor plants inside</li>
+            <li>• Check for pest hitchhikers</li>
+            <li>• Prepare for dormancy</li>
+          </ul>
+        </div>
+        <div class="season-card rounded-lg p-6 fade-in">
+          <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-snowflake-line ri-2x text-blue-500"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mb-4 text-center">Winter Care</h3>
+          <ul class="text-gray-300 space-y-2 text-sm">
+            <li>• Water less frequently</li>
+            <li>• Provide supplemental lighting</li>
+            <li>• Increase humidity indoors</li>
+            <li>• Avoid cold drafts</li>
+            <li>• Monitor for dry air damage</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Beginner's Guide Section -->
+  <section class="py-16 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="fade-in">
+          <h2 class="text-4xl font-bold mb-6">New to Plants?</h2>
+          <p class="text-xl text-gray-300 mb-8">
+            Start your plant parent journey with confidence. Our
+            beginner-friendly guides cover everything you need to know to keep
+            your first plants happy and healthy.
           </p>
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-4 mt-1">
+                <div class="w-4 h-4 flex items-center justify-center">
+                  <i class="ri-check-line text-primary"></i>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">
+                  Basic Care Principles
+                </h3>
+                <p class="text-gray-400">
+                  Learn the fundamental concepts of plant care that apply to
+                  most houseplants.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-4 mt-1">
+                <div class="w-4 h-4 flex items-center justify-center">
+                  <i class="ri-close-line text-red-400"></i>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">
+                  Common Mistakes to Avoid
+                </h3>
+                <p class="text-gray-400">
+                  Discover the most frequent beginner errors and how to
+                  prevent them.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-4 mt-1">
+                <div class="w-4 h-4 flex items-center justify-center">
+                  <i class="ri-star-line text-yellow-400"></i>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">
+                  Recommended Starter Plants
+                </h3>
+                <p class="text-gray-400">
+                  Find the perfect low-maintenance plants to begin your
+                  collection.
+                </p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="bg-primary text-black px-8 py-4 !rounded-button font-semibold text-lg hover:bg-green-400 transition-colors whitespace-nowrap mt-8">
+            Start Your Plant Journey
+          </button>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="tool-card rounded-lg p-8 fade-in">
-            <div class="flex items-center mb-6">
-              <div
-                class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4"
-              >
-                <div class="w-6 h-6 flex items-center justify-center">
-                  <i class="ri-drop-line ri-lg text-primary"></i>
-                </div>
-              </div>
-              <h3 class="text-2xl font-semibold">Watering Calculator</h3>
-            </div>
-            <p class="text-gray-400 mb-6">
-              Calculate the perfect watering schedule based on your plant type,
-              pot size, and environment.
-            </p>
-            <div class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium mb-2">Plant Type</label>
-                <select
-                  class="calculator-input w-full px-4 py-3 rounded-lg text-white"
-                >
-                  <option>Select plant type</option>
-                  <option>Tropical (Monstera, Fiddle Leaf Fig)</option>
-                  <option>Succulent (Aloe, Jade Plant)</option>
-                  <option>Fern (Boston Fern, Maidenhair)</option>
-                  <option>Snake Plant</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-sm font-medium mb-2">Pot Size</label>
-                <select
-                  class="calculator-input w-full px-4 py-3 rounded-lg text-white"
-                >
-                  <option>Select pot size</option>
-                  <option>Small (4-6 inches)</option>
-                  <option>Medium (6-10 inches)</option>
-                  <option>Large (10+ inches)</option>
-                </select>
-              </div>
-              <button
-                class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full"
-              >
-                Calculate Schedule
-              </button>
-              <div class="calculator-result rounded-lg p-4 mt-4 hidden">
-                <p class="text-primary font-semibold">
-                  Recommended: Water every 7-10 days
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="tool-card rounded-lg p-8 fade-in">
-            <div class="flex items-center mb-6">
-              <div
-                class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4"
-              >
-                <div class="w-6 h-6 flex items-center justify-center">
-                  <i class="ri-sun-line ri-lg text-primary"></i>
-                </div>
-              </div>
-              <h3 class="text-2xl font-semibold">Light Analyzer</h3>
-            </div>
-            <p class="text-gray-400 mb-6">
-              Determine if your plant is getting the right amount of light for
-              optimal growth.
-            </p>
-            <div class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium mb-2"
-                  >Current Location</label
-                >
-                <select
-                  class="calculator-input w-full px-4 py-3 rounded-lg text-white"
-                >
-                  <option>Select location</option>
-                  <option>North-facing window</option>
-                  <option>South-facing window</option>
-                  <option>East-facing window</option>
-                  <option>West-facing window</option>
-                  <option>Interior room</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-sm font-medium mb-2"
-                  >Distance from Window</label
-                >
-                <select
-                  class="calculator-input w-full px-4 py-3 rounded-lg text-white"
-                >
-                  <option>Select distance</option>
-                  <option>Right at window (0-2 feet)</option>
-                  <option>Near window (2-5 feet)</option>
-                  <option>Across room (5+ feet)</option>
-                </select>
-              </div>
-              <button
-                class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full"
-              >
-                Analyze Light
-              </button>
-              <div class="calculator-result rounded-lg p-4 mt-4 hidden">
-                <p class="text-primary font-semibold">
-                  Light Level: Bright Indirect - Perfect for most houseplants!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="tool-card rounded-lg p-8 fade-in">
-            <div class="flex items-center mb-6">
-              <div
-                class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4"
-              >
-                <div class="w-6 h-6 flex items-center justify-center">
-                  <i class="ri-leaf-line ri-lg text-primary"></i>
-                </div>
-              </div>
-              <h3 class="text-2xl font-semibold">Fertilizer Reminder</h3>
-            </div>
-            <p class="text-gray-400 mb-6">
-              Set up personalized fertilizing reminders based on your plants'
-              needs and seasons.
-            </p>
-            <div class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium mb-2"
-                  >Plant Category</label
-                >
-                <select
-                  class="calculator-input w-full px-4 py-3 rounded-lg text-white"
-                >
-                  <option>Select category</option>
-                  <option>Fast-growing tropicals</option>
-                  <option>Slow-growing succulents</option>
-                  <option>Flowering plants</option>
-                  <option>Foliage plants</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-sm font-medium mb-2"
-                  >Current Season</label
-                >
-                <select
-                  class="calculator-input w-full px-4 py-3 rounded-lg text-white"
-                >
-                  <option>Spring (Growing season)</option>
-                  <option>Summer (Peak growth)</option>
-                  <option>Fall (Slowing down)</option>
-                  <option>Winter (Dormant)</option>
-                </select>
-              </div>
-              <button
-                class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full"
-              >
-                Set Reminder
-              </button>
-              <div class="calculator-result rounded-lg p-4 mt-4 hidden">
-                <p class="text-primary font-semibold">
-                  Reminder set: Fertilize every 2 weeks during growing season
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="tool-card rounded-lg p-8 fade-in">
-            <div class="flex items-center mb-6">
-              <div
-                class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4"
-              >
-                <div class="w-6 h-6 flex items-center justify-center">
-                  <i class="ri-calendar-line ri-lg text-primary"></i>
-                </div>
-              </div>
-              <h3 class="text-2xl font-semibold">Care Routine Builder</h3>
-            </div>
-            <p class="text-gray-400 mb-6">
-              Create a personalized care schedule for all your plants in one
-              organized routine.
-            </p>
-            <div class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium mb-2"
-                  >Number of Plants</label
-                >
-                <input
-                  type="number"
-                  placeholder="Enter number of plants"
-                  class="calculator-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400"
-                  min="1"
-                  max="50"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-medium mb-2"
-                  >Experience Level</label
-                >
-                <select
-                  class="calculator-input w-full px-4 py-3 rounded-lg text-white"
-                >
-                  <option>Beginner</option>
-                  <option>Intermediate</option>
-                  <option>Advanced</option>
-                </select>
-              </div>
-              <button
-                class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full"
-              >
-                Build Routine
-              </button>
-              <div class="calculator-result rounded-lg p-4 mt-4 hidden">
-                <p class="text-primary font-semibold">
-                  Custom routine created! Check plants every 3 days, water as
-                  needed.
-                </p>
-              </div>
-            </div>
-          </div>
+        <div class="fade-in">
+          <img
+            src="https://readdy.ai/api/search-image?query=happy%20person%20caring%20for%20houseplants%2C%20beginner%20plant%20parent%20watering%20plants%2C%20indoor%20garden%20setup%2C%20plant%20care%20tools%2C%20peaceful%20home%20environment%2C%20natural%20lighting%2C%20botanical%20lifestyle%20photography&width=600&height=400&seq=beginner-guide&orientation=landscape"
+            alt="Beginner Plant Care" class="w-full h-96 object-cover object-top rounded-lg" />
         </div>
       </div>
-    </section>
-    <!-- Downloadable Resources -->
-    <section class="py-16 bg-gray-900">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold mb-4">Downloadable Care Resources</h2>
-          <p class="text-xl text-gray-400">
-            Free printable guides and checklists for offline reference
+    </div>
+  </section>
+  <!-- Interactive Tools -->
+  <section class="py-16 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4">Interactive Care Tools</h2>
+        <p class="text-xl text-gray-400">
+          Smart calculators and tools to optimize your plant care routine
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="tool-card rounded-lg p-8 fade-in">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-drop-line ri-lg text-primary"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-semibold">Watering Calculator</h3>
+          </div>
+          <p class="text-gray-400 mb-6">
+            Calculate the perfect watering schedule based on your plant type,
+            pot size, and environment.
           </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="resource-card rounded-lg p-6 fade-in">
-            <div
-              class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 mx-auto"
-            >
-              <div class="w-8 h-8 flex items-center justify-center">
-                <i class="ri-file-list-line ri-2x text-primary"></i>
-              </div>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">Plant Type</label>
+              <select class="calculator-input w-full px-4 py-3 rounded-lg text-white">
+                <option>Select plant type</option>
+                <option>Tropical (Monstera, Fiddle Leaf Fig)</option>
+                <option>Succulent (Aloe, Jade Plant)</option>
+                <option>Fern (Boston Fern, Maidenhair)</option>
+                <option>Snake Plant</option>
+              </select>
             </div>
-            <h3 class="text-lg font-semibold mb-4 text-center">
-              Plant Care Checklist
-            </h3>
-            <p class="text-gray-400 text-sm mb-6 text-center">
-              Complete daily, weekly, and monthly care tasks to keep your plants
-              thriving.
-            </p>
+            <div>
+              <label class="block text-sm font-medium mb-2">Pot Size</label>
+              <select class="calculator-input w-full px-4 py-3 rounded-lg text-white">
+                <option>Select pot size</option>
+                <option>Small (4-6 inches)</option>
+                <option>Medium (6-10 inches)</option>
+                <option>Large (10+ inches)</option>
+              </select>
+            </div>
             <button
-              class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full text-sm"
-            >
-              <div class="w-4 h-4 flex items-center justify-center inline mr-2">
-                <i class="ri-download-line"></i>
-              </div>
-              Download PDF
+              class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full">
+              Calculate Schedule
             </button>
-          </div>
-          <div class="resource-card rounded-lg p-6 fade-in">
-            <div
-              class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 mx-auto"
-            >
-              <div class="w-8 h-8 flex items-center justify-center">
-                <i class="ri-calendar-2-line ri-2x text-primary"></i>
-              </div>
-            </div>
-            <h3 class="text-lg font-semibold mb-4 text-center">
-              Seasonal Care Guide
-            </h3>
-            <p class="text-gray-400 text-sm mb-6 text-center">
-              Adjust your plant care routine throughout the year with seasonal
-              tips.
-            </p>
-            <button
-              class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full text-sm"
-            >
-              <div class="w-4 h-4 flex items-center justify-center inline mr-2">
-                <i class="ri-download-line"></i>
-              </div>
-              Download PDF
-            </button>
-          </div>
-          <div class="resource-card rounded-lg p-6 fade-in">
-            <div
-              class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 mx-auto"
-            >
-              <div class="w-8 h-8 flex items-center justify-center">
-                <i class="ri-bug-line ri-2x text-primary"></i>
-              </div>
-            </div>
-            <h3 class="text-lg font-semibold mb-4 text-center">
-              Troubleshooting Guide
-            </h3>
-            <p class="text-gray-400 text-sm mb-6 text-center">
-              Quick reference for identifying and solving common plant problems.
-            </p>
-            <button
-              class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full text-sm"
-            >
-              <div class="w-4 h-4 flex items-center justify-center inline mr-2">
-                <i class="ri-download-line"></i>
-              </div>
-              Download PDF
-            </button>
-          </div>
-          <div class="resource-card rounded-lg p-6 fade-in">
-            <div
-              class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 mx-auto"
-            >
-              <div class="w-8 h-8 flex items-center justify-center">
-                <i class="ri-book-line ri-2x text-primary"></i>
-              </div>
-            </div>
-            <h3 class="text-lg font-semibold mb-4 text-center">
-              Care Log Template
-            </h3>
-            <p class="text-gray-400 text-sm mb-6 text-center">
-              Track watering, fertilizing, and observations for each of your
-              plants.
-            </p>
-            <button
-              class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full text-sm"
-            >
-              <div class="w-4 h-4 flex items-center justify-center inline mr-2">
-                <i class="ri-download-line"></i>
-              </div>
-              Download PDF
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Contact Section -->
-<section id="contact" class="py-20 bg-gray-900">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="text-center mb-16 fade-in">
-<h2 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
-<p class="text-xl text-gray-400 max-w-2xl mx-auto">
-Have questions about our plants or need help choosing the perfect green companion?
-</p>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-<!-- Contact Form -->
-<div class="fade-in">
-<form class="space-y-6">
-<div>
-<input type="text" placeholder="Your Name" class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none">
-</div>
-<div>
-<input type="email" placeholder="Your Email" class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none">
-</div>
-<div>
-<textarea rows="6" placeholder="Your Message" class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none resize-none"></textarea>
-</div>
-<button type="submit" class="neon-glow bg-primary text-black px-8 py-3 !rounded-button font-semibold w-full whitespace-nowrap">
-Send Message
-</button>
-</form>
-</div>
-<!-- Contact Info -->
-<div class="fade-in">
-<div class="space-y-8">
-<div class="flex items-start space-x-4">
-<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-<div class="w-6 h-6 flex items-center justify-center">
-<i class="ri-map-pin-line ri-lg text-black"></i>
-</div>
-</div>
-<div>
-<h3 class="text-xl font-semibold mb-2">Visit Our Store</h3>
-<p class="text-gray-400">123 Garden Street, Green Valley, CA 90210</p>
-</div>
-</div>
-<div class="flex items-start space-x-4">
-<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-<div class="w-6 h-6 flex items-center justify-center">
-<i class="ri-phone-line ri-lg text-black"></i>
-</div>
-</div>
-<div>
-<h3 class="text-xl font-semibold mb-2">Call Us</h3>
-<p class="text-gray-400">(555) 123-PLANT</p>
-</div>
-</div>
-<div class="flex items-start space-x-4">
-<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-<div class="w-6 h-6 flex items-center justify-center">
-<i class="ri-mail-line ri-lg text-black"></i>
-</div>
-</div>
-<div>
-<h3 class="text-xl font-semibold mb-2">Email Us</h3>
-<p class="text-gray-400">hello@planthub.com</p>
-</div>
-</div>
-<div class="flex items-start space-x-4">
-<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-<div class="w-6 h-6 flex items-center justify-center">
-<i class="ri-time-line ri-lg text-black"></i>
-</div>
-</div>
-<div>
-<h3 class="text-xl font-semibold mb-2">Store Hours</h3>
-<p class="text-gray-400">Mon-Fri: 9AM-7PM<br>Sat-Sun: 10AM-6PM</p>
-</div>
-</div>
-</div>
-<!-- Map -->
-<div class="mt-8 h-64 rounded-lg overflow-hidden">
-<div class="w-full h-full bg-center bg-cover" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png')"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-    <!-- Footer -->
-    <footer id="contact" class="bg-black py-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <span class="font-['Pacifico'] text-2xl text-primary"
-              >PlantHub</span
-            >
-            <p class="text-gray-400 mt-4">
-              Bringing nature into your home with premium plants and expert care
-              guidance.
-            </p>
-            <div class="flex space-x-4 mt-6">
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors"
-              >
-                <div class="w-5 h-5 flex items-center justify-center">
-                  <i class="ri-facebook-fill"></i>
-                </div>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors"
-              >
-                <div class="w-5 h-5 flex items-center justify-center">
-                  <i class="ri-instagram-fill"></i>
-                </div>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors"
-              >
-                <div class="w-5 h-5 flex items-center justify-center">
-                  <i class="ri-twitter-fill"></i>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="https://readdy.ai/home/e4f438e9-dde0-42b1-953a-403451c5d810/00d1c152-dd62-4c61-bfba-f822707b87ab"
-                  data-readdy="true"
-                  class="text-gray-400 hover:text-primary transition-colors"
-                  >Home</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-primary transition-colors"
-                  >Catalog</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-primary transition-colors"
-                  >Care Guides</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://readdy.ai/home/e4f438e9-dde0-42b1-953a-403451c5d810/49e3761a-b0c1-428c-819a-69b8ca94bd93"
-                  data-readdy="true"
-                  class="text-gray-400 hover:text-primary transition-colors"
-                  >About</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-lg font-semibold mb-4">Plant Care</h3>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-primary transition-colors"
-                  >Watering Guide</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-primary transition-colors"
-                  >Light Requirements</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-primary transition-colors"
-                  >Fertilizing Tips</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-primary transition-colors"
-                  >Problem Solutions</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
-            <p class="text-gray-400 mb-4">
-              Get plant care tips and special offers
-            </p>
-            <div class="flex">
-              <input
-                type="email"
-                placeholder="Your email"
-                class="form-input flex-1 px-4 py-2 rounded-l-lg text-white placeholder-gray-400"
-              />
-              <button
-                class="bg-primary text-black px-4 py-2 rounded-r-lg font-semibold hover:bg-green-400 transition-colors whitespace-nowrap"
-              >
-                Subscribe
-              </button>
+            <div class="calculator-result rounded-lg p-4 mt-4 hidden">
+              <p class="text-primary font-semibold">
+                Recommended: Water every 7-10 days
+              </p>
             </div>
           </div>
         </div>
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p class="text-gray-400">
-            © 2025 PlantHub. All rights reserved. | Privacy Policy | Terms of
-            Service
+        <div class="tool-card rounded-lg p-8 fade-in">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-sun-line ri-lg text-primary"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-semibold">Light Analyzer</h3>
+          </div>
+          <p class="text-gray-400 mb-6">
+            Determine if your plant is getting the right amount of light for
+            optimal growth.
           </p>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">Current Location</label>
+              <select class="calculator-input w-full px-4 py-3 rounded-lg text-white">
+                <option>Select location</option>
+                <option>North-facing window</option>
+                <option>South-facing window</option>
+                <option>East-facing window</option>
+                <option>West-facing window</option>
+                <option>Interior room</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Distance from Window</label>
+              <select class="calculator-input w-full px-4 py-3 rounded-lg text-white">
+                <option>Select distance</option>
+                <option>Right at window (0-2 feet)</option>
+                <option>Near window (2-5 feet)</option>
+                <option>Across room (5+ feet)</option>
+              </select>
+            </div>
+            <button
+              class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full">
+              Analyze Light
+            </button>
+            <div class="calculator-result rounded-lg p-4 mt-4 hidden">
+              <p class="text-primary font-semibold">
+                Light Level: Bright Indirect - Perfect for most houseplants!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tool-card rounded-lg p-8 fade-in">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-leaf-line ri-lg text-primary"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-semibold">Fertilizer Reminder</h3>
+          </div>
+          <p class="text-gray-400 mb-6">
+            Set up personalized fertilizing reminders based on your plants'
+            needs and seasons.
+          </p>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">Plant Category</label>
+              <select class="calculator-input w-full px-4 py-3 rounded-lg text-white">
+                <option>Select category</option>
+                <option>Fast-growing tropicals</option>
+                <option>Slow-growing succulents</option>
+                <option>Flowering plants</option>
+                <option>Foliage plants</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Current Season</label>
+              <select class="calculator-input w-full px-4 py-3 rounded-lg text-white">
+                <option>Spring (Growing season)</option>
+                <option>Summer (Peak growth)</option>
+                <option>Fall (Slowing down)</option>
+                <option>Winter (Dormant)</option>
+              </select>
+            </div>
+            <button
+              class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full">
+              Set Reminder
+            </button>
+            <div class="calculator-result rounded-lg p-4 mt-4 hidden">
+              <p class="text-primary font-semibold">
+                Reminder set: Fertilize every 2 weeks during growing season
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tool-card rounded-lg p-8 fade-in">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-calendar-line ri-lg text-primary"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-semibold">Care Routine Builder</h3>
+          </div>
+          <p class="text-gray-400 mb-6">
+            Create a personalized care schedule for all your plants in one
+            organized routine.
+          </p>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">Number of Plants</label>
+              <input type="number" placeholder="Enter number of plants"
+                class="calculator-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400" min="1" max="50" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Experience Level</label>
+              <select class="calculator-input w-full px-4 py-3 rounded-lg text-white">
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+              </select>
+            </div>
+            <button
+              class="bg-primary text-black px-6 py-3 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full">
+              Build Routine
+            </button>
+            <div class="calculator-result rounded-lg p-4 mt-4 hidden">
+              <p class="text-primary font-semibold">
+                Custom routine created! Check plants every 3 days, water as
+                needed.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-    </footer>
-    <script id="navigation-script">
-      document.addEventListener("DOMContentLoaded", function () {
-        const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
-        const mobileMenu = document.querySelector(".mobile-menu");
-        mobileMenuBtn.addEventListener("click", function () {
-          mobileMenu.classList.toggle("active");
-        });
-        const mobileLinks = mobileMenu.querySelectorAll("a");
-        mobileLinks.forEach((link) => {
-          link.addEventListener("click", function () {
-            mobileMenu.classList.remove("active");
-          });
+    </div>
+  </section>
+  <!-- Downloadable Resources -->
+  <section class="py-16 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4">Downloadable Care Resources</h2>
+        <p class="text-xl text-gray-400">
+          Free printable guides and checklists for offline reference
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="resource-card rounded-lg p-6 fade-in">
+          <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-file-list-line ri-2x text-primary"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold mb-4 text-center">
+            Plant Care Checklist
+          </h3>
+          <p class="text-gray-400 text-sm mb-6 text-center">
+            Complete daily, weekly, and monthly care tasks to keep your plants
+            thriving.
+          </p>
+          <button
+            class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full text-sm">
+            <div class="w-4 h-4 flex items-center justify-center inline mr-2">
+              <i class="ri-download-line"></i>
+            </div>
+            Download PDF
+          </button>
+        </div>
+        <div class="resource-card rounded-lg p-6 fade-in">
+          <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-calendar-2-line ri-2x text-primary"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold mb-4 text-center">
+            Seasonal Care Guide
+          </h3>
+          <p class="text-gray-400 text-sm mb-6 text-center">
+            Adjust your plant care routine throughout the year with seasonal
+            tips.
+          </p>
+          <button
+            class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full text-sm">
+            <div class="w-4 h-4 flex items-center justify-center inline mr-2">
+              <i class="ri-download-line"></i>
+            </div>
+            Download PDF
+          </button>
+        </div>
+        <div class="resource-card rounded-lg p-6 fade-in">
+          <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-bug-line ri-2x text-primary"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold mb-4 text-center">
+            Troubleshooting Guide
+          </h3>
+          <p class="text-gray-400 text-sm mb-6 text-center">
+            Quick reference for identifying and solving common plant problems.
+          </p>
+          <button
+            class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full text-sm">
+            <div class="w-4 h-4 flex items-center justify-center inline mr-2">
+              <i class="ri-download-line"></i>
+            </div>
+            Download PDF
+          </button>
+        </div>
+        <div class="resource-card rounded-lg p-6 fade-in">
+          <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-book-line ri-2x text-primary"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold mb-4 text-center">
+            Care Log Template
+          </h3>
+          <p class="text-gray-400 text-sm mb-6 text-center">
+            Track watering, fertilizing, and observations for each of your
+            plants.
+          </p>
+          <button
+            class="bg-primary text-black px-4 py-2 !rounded-button font-semibold hover:bg-green-400 transition-colors whitespace-nowrap w-full text-sm">
+            <div class="w-4 h-4 flex items-center justify-center inline mr-2">
+              <i class="ri-download-line"></i>
+            </div>
+            Download PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Contact Section -->
+  <section id="contact" class="pt-24 pb-16 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+        We're here to help! Whether you have questions about plants, need care advice, or want to share your plant
+        journey, we're ready to assist.
+      </p>
+    </div>
+  </section>
+  <!-- Contact Form & Map -->
+  <section class="py-16 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Form -->
+        <div>
+          <h2 class="text-2xl font-bold mb-6">Send Us a Message</h2>
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-2">First Name *</label>
+                <input type="text" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Your first name">
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">Last Name *</label>
+                <input type="text" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Your last name">
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Email Address *</label>
+              <input type="email" class="form-input w-full px-4 py-3 rounded-lg" placeholder="your@email.com">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Subject *</label>
+              <select class="form-input w-full px-4 py-3 rounded-lg">
+                <option>Select a topic</option>
+                <option>Plant Care Help</option>
+                <option>Order Inquiry</option>
+                <option>Shipping Question</option>
+                <option>Plant Problem</option>
+                <option>General Question</option>
+                <option>Business Inquiry</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Message *</label>
+              <textarea rows="5" class="form-input w-full px-4 py-3 rounded-lg resize-none"
+                placeholder="Tell us how we can help..."></textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Upload Photos (Optional)</label>
+              <div class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center">
+                <i class="ri-upload-cloud-line ri-2x text-gray-400 mb-2"></i>
+                <p class="text-sm text-gray-400">Drag & drop images or <button type="button"
+                    class="text-primary">browse</button></p>
+              </div>
+            </div>
+            <button type="submit"
+              class="w-full bg-primary text-black py-3 rounded-lg font-semibold hover:bg-green-400 transition-colors">
+              <i class="ri-send-plane-line mr-2"></i>Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Map & Store Info -->
+        <div>
+          <h2 class="text-2xl font-bold mb-6">Visit Our Store</h2>
+          <div class="map-container h-64 rounded-lg mb-6"></div>
+
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <i class="ri-map-pin-line text-primary ri-lg mt-1"></i>
+              <div>
+                <h4 class="font-semibold">Store Address</h4>
+                <p class="text-sm text-gray-400">123 Garden Street<br>Green Valley, CA 90210</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="ri-time-line text-primary ri-lg mt-1"></i>
+              <div>
+                <h4 class="font-semibold">Store Hours</h4>
+                <p class="text-sm text-gray-400">Mon-Fri: 9AM-7PM<br>Sat-Sun: 10AM-6PM</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="ri-phone-line text-primary ri-lg mt-1"></i>
+              <div>
+                <h4 class="font-semibold">Store Phone</h4>
+                <p class="text-sm text-gray-400">(555) 123-PLANT</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="ri-mail-line text-primary ri-lg mt-1"></i>
+              <div>
+                <h4 class="font-semibold">Store Email</h4>
+                <p class="text-sm text-gray-400">store@planthub.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-black py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <span class="font-['Pacifico'] text-2xl text-primary">PlantHub</span>
+          <p class="text-gray-400 mt-4">
+            Bringing nature into your home with premium plants and expert care
+            guidance.
+          </p>
+          <div class="flex space-x-4 mt-6">
+            <a href="#"
+              class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+              <div class="w-5 h-5 flex items-center justify-center">
+                <i class="ri-facebook-fill"></i>
+              </div>
+            </a>
+            <a href="#"
+              class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+              <div class="w-5 h-5 flex items-center justify-center">
+                <i class="ri-instagram-fill"></i>
+              </div>
+            </a>
+            <a href="#"
+              class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+              <div class="w-5 h-5 flex items-center justify-center">
+                <i class="ri-twitter-fill"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="https://readdy.ai/home/e4f438e9-dde0-42b1-953a-403451c5d810/00d1c152-dd62-4c61-bfba-f822707b87ab"
+                data-readdy="true" class="text-gray-400 hover:text-primary transition-colors">Home</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">Catalog</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">Care Guides</a>
+            </li>
+            <li>
+              <a href="https://readdy.ai/home/e4f438e9-dde0-42b1-953a-403451c5d810/49e3761a-b0c1-428c-819a-69b8ca94bd93"
+                data-readdy="true" class="text-gray-400 hover:text-primary transition-colors">About</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Plant Care</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">Watering Guide</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">Light Requirements</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">Fertilizing Tips</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">Problem Solutions</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">
+            Get plant care tips and special offers
+          </p>
+          <div class="flex">
+            <input type="email" placeholder="Your email"
+              class="form-input flex-1 px-4 py-2 rounded-l-lg text-white placeholder-gray-400" />
+            <button
+              class="bg-primary text-black px-4 py-2 rounded-r-lg font-semibold hover:bg-green-400 transition-colors whitespace-nowrap">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+        <p class="text-gray-400">
+          © 2025 PlantHub. All rights reserved. | Privacy Policy | Terms of
+          Service
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script id="navigation-script">
+    // FAQ toggle
+    function toggleFAQ(id) {
+      const answer = document.querySelectorAll('.faq-answer')[id - 1];
+      const icon = document.getElementById(`faq-icon-${id}`);
+
+      answer.classList.toggle('active');
+      icon.style.transform = answer.classList.contains('active') ? 'rotate(45deg)' : 'rotate(0deg)';
+    }
+
+    // Form submission
+    document.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+
+      submitBtn.innerHTML = '<i class="ri-loader-4-line mr-2 animate-spin"></i>Sending...';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        submitBtn.innerHTML = '<i class="ri-check-line mr-2"></i>Message Sent!';
+        submitBtn.classList.add('bg-green-500');
+
+        setTimeout(() => {
+          submitBtn.innerHTML = originalText;
+          submitBtn.classList.remove('bg-green-500');
+          submitBtn.disabled = false;
+          this.reset();
+        }, 3000);
+      }, 2000);
+    });
+
+    // Live chat simulation
+    document.querySelector('button:contains("Start Chat")').addEventListener('click', function () {
+      this.textContent = 'Connecting...';
+      setTimeout(() => {
+        this.textContent = 'Chat Connected!';
+        this.style.background = '#22c55e';
+      }, 1500);
+    });
+
+    // Fade in animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+      const mobileMenu = document.querySelector(".mobile-menu");
+      mobileMenuBtn.addEventListener("click", function () {
+        mobileMenu.classList.toggle("active");
+      });
+      const mobileLinks = mobileMenu.querySelectorAll("a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+          mobileMenu.classList.remove("active");
         });
       });
-    </script>
-    <script id="fade-in-animation-script">
-      document.addEventListener("DOMContentLoaded", function () {
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px",
-        };
-        const observer = new IntersectionObserver(function (entries) {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        }, observerOptions);
-        const fadeElements = document.querySelectorAll(".fade-in");
-        fadeElements.forEach((el) => observer.observe(el));
-      });
-    </script>
-    <script id="search-functionality-script">
-      document.addEventListener("DOMContentLoaded", function () {
-        const searchInput = document.getElementById("care-search");
-        const careCategories = document.querySelectorAll(".care-card");
-        const problemCards = document.querySelectorAll(".problem-card");
-        searchInput.addEventListener("input", function () {
-          const searchTerm = this.value.toLowerCase();
-          if (searchTerm.length === 0) {
-            careCategories.forEach((card) => (card.style.display = "block"));
-            problemCards.forEach((card) => (card.style.display = "block"));
-            return;
+    });
+  </script>
+  <script id="fade-in-animation-script">
+    document.addEventListener("DOMContentLoaded", function () {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
           }
-          careCategories.forEach((card) => {
-            const title = card.querySelector("h3").textContent.toLowerCase();
-            const description = card.querySelector("p").textContent.toLowerCase();
-            if (title.includes(searchTerm) || description.includes(searchTerm)) {
-              card.style.display = "block";
-            } else {
-              card.style.display = "none";
-            }
-          });
-          problemCards.forEach((card) => {
-            const title = card.querySelector("h3").textContent.toLowerCase();
-            const description = card.querySelector("p").textContent.toLowerCase();
-            if (title.includes(searchTerm) || description.includes(searchTerm)) {
-              card.style.display = "block";
-            } else {
-              card.style.display = "none";
-            }
-          });
+        });
+      }, observerOptions);
+      const fadeElements = document.querySelectorAll(".fade-in");
+      fadeElements.forEach((el) => observer.observe(el));
+    });
+  </script>
+  <script id="search-functionality-script">
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchInput = document.getElementById("care-search");
+      const careCategories = document.querySelectorAll(".care-card");
+      const problemCards = document.querySelectorAll(".problem-card");
+      searchInput.addEventListener("input", function () {
+        const searchTerm = this.value.toLowerCase();
+        if (searchTerm.length === 0) {
+          careCategories.forEach((card) => (card.style.display = "block"));
+          problemCards.forEach((card) => (card.style.display = "block"));
+          return;
+        }
+        careCategories.forEach((card) => {
+          const title = card.querySelector("h3").textContent.toLowerCase();
+          const description = card.querySelector("p").textContent.toLowerCase();
+          if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+        problemCards.forEach((card) => {
+          const title = card.querySelector("h3").textContent.toLowerCase();
+          const description = card.querySelector("p").textContent.toLowerCase();
+          if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
         });
       });
-    </script>
-    <script id="calculator-functionality-script">
-      document.addEventListener("DOMContentLoaded", function () {
-        const calculatorButtons = document.querySelectorAll(".tool-card button");
-        const results = document.querySelectorAll(".calculator-result");
-        calculatorButtons.forEach((button, index) => {
-          button.addEventListener("click", function () {
-            const result = this.parentElement.querySelector(".calculator-result");
-            if (result) {
-              result.classList.remove("hidden");
-              setTimeout(() => {
-                result.scrollIntoView({ behavior: "smooth", block: "nearest" });
-              }, 100);
-            }
-          });
-        });
-      });
-    </script>
-    <script id="download-functionality-script">
-      document.addEventListener("DOMContentLoaded", function () {
-        const downloadButtons = document.querySelectorAll(".resource-card button");
-        downloadButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="ri-check-line mr-2"></i> Downloaded!';
-            this.style.background = "#22c55e";
+    });
+  </script>
+  <script id="calculator-functionality-script">
+    document.addEventListener("DOMContentLoaded", function () {
+      const calculatorButtons = document.querySelectorAll(".tool-card button");
+      const results = document.querySelectorAll(".calculator-result");
+      calculatorButtons.forEach((button, index) => {
+        button.addEventListener("click", function () {
+          const result = this.parentElement.querySelector(".calculator-result");
+          if (result) {
+            result.classList.remove("hidden");
             setTimeout(() => {
-              this.innerHTML = originalText;
-              this.style.background = "";
-            }, 2000);
-          });
+              result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }, 100);
+          }
         });
       });
-    </script>
-  </body>
+    });
+  </script>
+  <script id="download-functionality-script">
+    document.addEventListener("DOMContentLoaded", function () {
+      const downloadButtons = document.querySelectorAll(".resource-card button");
+      downloadButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const originalText = this.innerHTML;
+          this.innerHTML = '<i class="ri-check-line mr-2"></i> Downloaded!';
+          this.style.background = "#22c55e";
+          setTimeout(() => {
+            this.innerHTML = originalText;
+            this.style.background = "";
+          }, 2000);
+        });
+      });
+    });
+  </script>
+</body>
+
 </html>
